@@ -1,0 +1,3684 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lunas Geschichte – Buch</title>
+<style>
+
+  
+
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    font-family: "P052", "URW Palladio L", "Palatino Linotype", "Noto Serif", serif;
+    color: #26242a;
+    font-size: 11.6pt;
+    line-height: 1.74;
+  }
+
+  /* Bildschirmansicht: die Datei wirkt sonst randlos und wie ein Textdump.
+     Dieser Block betrifft nur den Browser, nicht den PDF-Export (siehe 
+
+  h1, h2, h3, td, div, span, p {
+    font-family: "P052", "URW Palladio L", "Palatino Linotype", "Noto Serif", serif;
+  }
+
+  p {
+    margin: 0 0 0.62em 0;
+    text-align: left;
+    orphans: 3;
+    widows: 3;
+  }
+
+  em { font-style: italic; }
+
+  /* ---------- Titelseite ---------- */
+  .titlepage { text-align: center; padding-top: 62mm; }
+  .titlepage .kicker {
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    font-size: 9.5pt;
+    color: #8b8290;
+    margin-bottom: 30mm;
+  }
+  .titlepage h1 {
+    font-size: 40pt;
+    font-weight: normal;
+    margin: 0 0 7mm 0;
+    letter-spacing: 0.03em;
+    color: #1e1c22;
+  }
+  .titlepage .subtitle {
+    font-size: 13.5pt;
+    font-style: italic;
+    color: #6d5b6b;
+    margin: 0 0 26mm 0;
+  }
+  .titlepage .ornament { font-size: 15pt; color: #9a8b98; }
+  .titlepage .author {
+    margin-top: 10mm;
+    font-size: 10.5pt;
+    letter-spacing: 0.12em;
+    color: #6d5b6b;
+  }
+
+  /* ---------- Widmung ---------- */
+  .dedication { text-align: center; padding-top: 88mm; }
+  .dedication p {
+    text-align: center;
+    font-style: italic;
+    font-size: 12pt;
+    color: #4a4650;
+    line-height: 1.95;
+  }
+
+  /* ---------- Hinweisseite ---------- */
+  .notice { padding-top: 50mm; }
+  .notice h2 {
+    font-size: 11pt;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #6d5b6b;
+    text-align: center;
+    margin: 0 0 12mm 0;
+    font-weight: normal;
+  }
+  .notice p {
+    text-align: center;
+    font-size: 10.5pt;
+    color: #3d3a42;
+    line-height: 1.8;
+    margin: 0 0 4mm 0;
+  }
+  .notice .helpline {
+    margin-top: 10mm;
+    font-size: 10pt;
+    color: #6f6a75;
+  }
+
+  /* ---------- Inhalt ---------- */
+  .toc { padding-top: 40mm; }
+  .toc h2 {
+    text-align: center;
+    font-weight: normal;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-size: 11pt;
+    color: #6d5b6b;
+    margin: 0 0 16mm 0;
+  }
+  .toc table { width: 100%; border-collapse: collapse; }
+  .toc td { padding: 2.6mm 0; font-size: 11.5pt; }
+  .toc td.n { width: 15mm; color: #9a8b98; }
+  .toc td.pg { text-align: right; width: 14mm; color: #9a8b98; }
+
+  /* ---------- Kapitel ---------- */
+  .chapter-head { text-align: center; margin: 16mm 0 14mm 0; }
+  .chapter-head .chnum {
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    font-size: 9.5pt;
+    color: #8b7a88;
+  }
+  .chapter-head h2 {
+    font-size: 20pt;
+    font-weight: normal;
+    margin: 3mm 0 0 0;
+    color: #1e1c22;
+    line-height: 1.3;
+  }
+  .chapter-head .rule { font-size: 11pt; color: #b3a5b1; margin-top: 3mm; }
+
+  .opening { letter-spacing: 0.09em; font-variant: small-caps; }
+
+  .scenebreak {
+    text-align: center;
+    margin: 1.05em 0;
+    color: #b3a5b1;
+    letter-spacing: 0.55em;
+    font-size: 9.5pt;
+  }
+
+  .daymark {
+    text-align: center;
+    font-style: italic;
+    color: #7d7285;
+    margin: 1.1em 0 0.7em 0;
+    font-size: 11pt;
+  }
+
+  .brk { page-break-before: always; }
+
+  /* ---------- Nachwort ---------- */
+  .after h2 {
+    font-size: 11pt;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #6d5b6b;
+    text-align: center;
+    margin: 44mm 0 12mm 0;
+    font-weight: normal;
+  }
+  .after p { font-size: 10.6pt; color: #3d3a42; line-height: 1.82; }
+  .after .contact { margin-top: 9mm; font-size: 10.2pt; color: #56515c; text-align: center; }
+
+
+  /* ---------- Blätterbuch-Ansicht ---------- */
+  html, body { height: 100%; }
+  body {
+    margin: 0; overflow: hidden; background: #2a2830;
+    display: flex; flex-direction: column;
+  }
+  #topbar {
+    flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between;
+    gap: 14px; padding: 10px 22px; background: #221f27; color: #cfc7cf;
+    font-family: "P052", "URW Palladio L", "Palatino Linotype", "Noto Serif", serif;
+  }
+  #topbar .brand { font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #a99aa8; }
+  #topbar .controls { display: flex; align-items: center; gap: 10px; }
+  #topbar select {
+    font-family: inherit; font-size: 12px; background: #2f2c36; color: #e6e0e6;
+    border: 1px solid #4a4552; border-radius: 4px; padding: 5px 8px; max-width: 46vw;
+  }
+  #topbar .pagenum { font-size: 12px; color: #9a8fa0; min-width: 64px; text-align: right; }
+  #stage { flex: 1 1 auto; position: relative; display: flex; align-items: center; justify-content: center; min-height: 0; }
+  #book {
+    position: relative; display: flex; justify-content: center; align-items: stretch;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.45); border-radius: 3px;
+  }
+  .page {
+    position: relative; width: min(90vw, 740px); height: min(88vh, 1000px);
+    background: #fffdfa; overflow: hidden; border-radius: 3px;
+  }
+  #book.spread .page { width: min(46vw, 600px); border-radius: 0; }
+  #book.spread .page:first-child { border-radius: 3px 0 0 3px; }
+  #book.spread .page:last-child { border-radius: 0 3px 3px 0; }
+  #book.spread::after {
+    content: "";
+    position: absolute; top: 0; bottom: 0; left: 50%; width: 16px; margin-left: -8px;
+    background: linear-gradient(to right, rgba(0,0,0,0.16), rgba(0,0,0,0) 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.16));
+    pointer-events: none; z-index: 5;
+  }
+  .page-content { position: absolute; inset: 0; padding: 7% 7.5%; overflow: hidden; transition: opacity 0.16s ease; }
+  .page-content.fading { opacity: 0; }
+  .page-footer {
+    position: absolute; left: 0; right: 0; bottom: 3.2%; text-align: center;
+    font-size: 8.6pt; color: #9a8b98;
+  }
+  .turn-zone { position: absolute; top: 0; bottom: 0; width: 9%; z-index: 50; cursor: pointer; }
+  .turn-zone.left { left: 0; }
+  .turn-zone.right { right: 0; }
+  .navbtn {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 60;
+    width: 42px; height: 42px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(255,253,250,0.14); color: #e6e0e6; font-size: 19px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease;
+  }
+  .navbtn:hover { background: rgba(255,253,250,0.28); }
+  .navbtn.left { left: 10px; }
+  .navbtn.right { right: 10px; }
+  .navbtn:disabled { opacity: 0.25; cursor: default; }
+  #navhint { flex: 0 0 auto; text-align: center; color: #756e80; font-size: 10.5px; padding: 7px; letter-spacing: 0.06em; }
+  #source { display: none; }
+
+  /* Front- und Backmatter etwas kompakter, damit sie auf eine Buchseite passen */
+  #book .titlepage { padding-top: 6%; }
+  #book .titlepage .kicker { margin-bottom: 9%; }
+  #book .titlepage h1 { font-size: 25px; margin: 0 0 10px 0; }
+  #book .titlepage .subtitle { font-size: 11.5px; margin-bottom: 8%; }
+  #book .titlepage .author { margin-top: 5%; font-size: 10.5px; }
+  #book .dedication { padding-top: 22%; }
+  #book .dedication p { font-size: 12px; }
+  #book .notice { padding-top: 4%; }
+  #book .notice h2 { margin-bottom: 7%; }
+  #book .toc { padding-top: 2%; }
+  #book .toc h2 { margin-bottom: 6%; }
+  #book .toc td { font-size: 10.5px; padding: 2% 0; }
+  #book .chapter-head { margin: 5% 0 6% 0; }
+  #book .chapter-head h2 { font-size: 16.5px; }
+  #book .after h2 { margin-top: 8%; }
+  #book .after-p { font-size: 11.5px; color: #3d3a42; line-height: 1.6; margin: 0 0 1em 0; }
+  #book .after-p.after-contact { margin-top: 6%; font-size: 11px; color: #56515c; text-align: center; }
+  #book .page-content { font-size: clamp(15px, 1.6vw, 16px); line-height: 1.62; }
+
+  /* Handy: groesserer Text, engere Raender/Leiste, damit mehr vom Buch sichtbar bleibt */
+  @media (max-width: 640px) {
+    #topbar { padding: 8px 12px; gap: 8px; }
+    #topbar .brand { font-size: 10.5px; letter-spacing: 0.09em; }
+    #topbar select { max-width: 50vw; font-size: 12.5px; padding: 5px 6px; }
+    #topbar .pagenum { font-size: 11px; min-width: 50px; }
+    .page { width: 94vw; height: 80vh; }
+    .page-content { padding: 6% 6%; }
+    .page-footer { font-size: 9.5pt; }
+    .navbtn { width: 40px; height: 40px; font-size: 18px; }
+    .navbtn.left { left: 4px; }
+    .navbtn.right { right: 4px; }
+    .turn-zone { width: 14%; }
+    #navhint { font-size: 9.5px; padding: 5px; }
+    #book .page-content { font-size: 16.5px; line-height: 1.58; }
+    #book .titlepage h1 { font-size: 22px; }
+    #book .chapter-head h2 { font-size: 15.5px; }
+    #book .toc td { font-size: 12px; }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="brand">Lunas Geschichte</div>
+  <div class="controls">
+    <select id="chapterSelect"></select>
+    <span class="pagenum" id="pageNum">– / –</span>
+  </div>
+</div>
+
+<div id="stage">
+  <div id="book"></div>
+  <button class="navbtn left" id="prevBtn" aria-label="Vorherige Seite">‹</button>
+  <button class="navbtn right" id="nextBtn" aria-label="Nächste Seite">›</button>
+</div>
+
+<div id="navhint">Blättern: Pfeiltasten, Klick auf den Seitenrand, oder Wischen</div>
+
+<div id="source">
+<div class="titlepage">
+  <div class="kicker">Eine Erzählung</div>
+  <h1>Lunas Geschichte</h1>
+  <div class="subtitle">Über das, was bleibt, wenn nichts mehr bleibt</div>
+  <div class="ornament">❧</div>
+  <div class="author">Luna</div>
+</div>
+
+<p class="brk">&nbsp;</p>
+
+<div class="dedication">
+  <p>Für alle, die morgens aufwachen<br>
+  und für eine Sekunde vergessen haben,<br>
+  was passiert ist.</p>
+</div>
+
+<p class="brk">&nbsp;</p>
+
+<div class="notice">
+  <h2>Hinweis</h2>
+  <p>Diese Geschichte erzählt von Verlust, Trauer, Depression und Suizid.</p>
+  <p>Sie tut das so ehrlich, wie sie kann. Wenn dich beim Lesen etwas davon zu sehr mitnimmt, ist es vollkommen in Ordnung, das Buch zuzuklappen. Du musst das hier nicht aushalten.</p>
+  <p class="helpline">Wenn es dir gerade selbst nicht gut geht:<br>
+  Telefonseelsorge, kostenlos und rund um die Uhr<br>
+  0800&nbsp;111&nbsp;0&nbsp;111 &nbsp;·&nbsp; 0800&nbsp;111&nbsp;0&nbsp;222</p>
+</div>
+
+<p class="brk">&nbsp;</p>
+
+<div class="toc">
+  <h2>Inhalt</h2>
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr><td class="n" width="12%">I</td><td width="76%">Niemandes Kinder</td><td class="pg" width="12%" align="right">5</td></tr>
+    <tr><td class="n">II</td><td>Ein ganz normaler Tag</td><td class="pg" align="right">13</td></tr>
+    <tr><td class="n">III</td><td>Der Platz bleibt leer</td><td class="pg" align="right">23</td></tr>
+    <tr><td class="n">IV</td><td>Sieben Tage</td><td class="pg" align="right">38</td></tr>
+    <tr><td class="n">V</td><td>Die Dinge, die bleiben</td><td class="pg" align="right">51</td></tr>
+    <tr><td class="n">VI</td><td>Was ich nicht gesehen habe</td><td class="pg" align="right">61</td></tr>
+    <tr><td class="n">VII</td><td>Hab dich lieb</td><td class="pg" align="right">68</td></tr>
+    <tr><td class="n">VIII</td><td>Warum bin ich noch hier?</td><td class="pg" align="right">81</td></tr>
+    <tr><td class="n">IX</td><td>Unter den Sternen</td><td class="pg" align="right">93</td></tr>
+    <tr><td class="n">X</td><td>Ein neuer Anfang</td><td class="pg" align="right">105</td></tr>
+    <tr><td class="n">XI</td><td>Ein Jahr</td><td class="pg" align="right">119</td></tr>
+  </table>
+</div>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== I ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Eins</span><h2>Niemandes Kinder</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Ich packe nicht viel ein.</span></p>
+
+<p>Zwei Taschen, ein Karton, mein altes Kissen, das schon ganz platt ist, aber ohne das ich sowieso nicht schlafen kann. Das ist ungefähr alles, was mir wirklich gehört. Ich stehe in meinem Zimmer, das schon nicht mehr wie meins aussieht, weil die Hälfte schon in den Taschen ist, und überlege kurz, ob ich noch etwas vergessen habe.</p>
+
+<p>Ich vergesse nichts. Das ist eigentlich das Traurige daran. Es gibt nicht so viel, das man vergessen könnte.</p>
+
+<p>Meine Mutter ist im Wohnzimmer. Ich höre den Fernseher, viel zu laut, so wie immer, wenn sie nicht will, dass man merkt, dass sie eigentlich gar nicht zuschaut. Ich könnte reingehen. Ich könnte sagen, dass ich jetzt gehe. Ich tue es nicht.</p>
+
+<p>Ich nehme meine Taschen und gehe an ihrer Tür vorbei zum Flur.</p>
+
+<p>„Luna?“</p>
+
+<p>Ich bleibe kurz stehen.</p>
+
+<p>„Ich geh jetzt.“</p>
+
+<p>Ein paar Sekunden Stille. Der Fernseher läuft weiter.</p>
+
+<p>„Okay.“</p>
+
+<p>Das ist alles.</p>
+
+<p>Kein „Bleib doch“, kein „Ist das wirklich eine gute Idee“, kein „Ich helf dir tragen“. Nur „Okay“, gesagt in Richtung Bildschirm, während ich in meinem eigenen Flur stehe und darauf warte, dass noch etwas kommt.</p>
+
+<p>Es kommt nichts.</p>
+
+<p>Ich mache die Tür hinter mir zu, ziemlich leise, und gehe die Treppe runter.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich erzähle das nicht gern. Aber ich erzähle es trotzdem, weil man sonst nicht versteht, warum ich mit fünfzehn in eine Wohnung mit einem Achtzehnjährigen ziehe, und warum das damals die vernünftigste Entscheidung war, die ich treffen konnte, und keine verzweifelte.</p>
+
+<p>Er ist achtzehn. Ich bin fünfzehn, noch ein paar Monate. Auf dem Papier ist das nicht viel. Für uns war es das, glaube ich, auch nicht.</p>
+
+<p>Mein Vater ist gestorben, als ich zwölf war. Krebs, die langsame Sorte, die einem Zeit lässt, sich zu verabschieden, und die einem trotzdem nie das Gefühl gibt, dass die Zeit gereicht hat. Ich erinnere mich an Krankenhausflure und an einen Geruch, den ich bis heute nicht mag, und daran, wie meine Mutter in den letzten Wochen praktisch nicht mehr geschlafen hat.</p>
+
+<p>Was ich damals nicht verstanden habe: Sie ist mit ihm gestorben. Nicht richtig. Aber ein Teil.</p>
+
+<p>Sie ist noch da, sie steht morgens auf, sie geht arbeiten, sie kauft ein. Aber irgendwas in ihr hat einfach aufgehört, mitzumachen. Sie redet mit mir, aber sie hört mir nicht wirklich zu. Sie fragt, wie mein Tag war, aber wartet die Antwort nicht ab. Irgendwann hat sie angefangen, abends immer eine Flasche Wein zu öffnen, dann irgendwann zwei, und ich hab so getan, als würde ich das nicht zählen, obwohl ich das natürlich gezählt habe.</p>
+
+<p>Ich will nicht sagen, dass sie eine schlechte Mutter ist. Ich glaube, sie hat einfach nichts mehr übrig gehabt. Für sich selbst schon kaum, für mich erst recht nicht.</p>
+
+<p>Man kann jemandem das nicht wirklich vorwerfen. Man kann trotzdem nicht darin wohnen bleiben.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Jannik kenne ich schon länger, bevor irgendwas davon wichtig wird.</p>
+
+<p>Er wohnt zwei Straßen weiter, ganz allein, seit er selbst niemanden mehr hat, der auf ihn wartet. Seine Eltern sind bei einem Autounfall gestorben, vor über zwei Jahren, auf einer Landstraße, mitten im Nichts, an einem Abend, an dem er zufällig nicht im Auto saß, weil er lieber bei einem Freund geblieben ist.</p>
+
+<p>Er hat mir das erst Monate erzählt, nachdem wir zusammengekommen sind, und dann in ungefähr drei Sätzen, so als würde er über jemand anderen reden.</p>
+
+<p>„Ich hatte danach eine Tante, kurz. Hat nicht so geklappt. Dann hat man mich halt als eigenständig eingestuft, weil ich fast achtzehn war, und ich durfte in der Wohnung bleiben. Die Ausbildungsstelle hatte ich schon. Ging schon irgendwie.“</p>
+
+<p>„Ging schon irgendwie.“ Das war der ganze Satz, mit dem er die schlimmste Sache seines Lebens zusammengefasst hat.</p>
+
+<p>Ich hab damals nicht weiter nachgefragt. Ich glaube, ich hab gespürt, dass er nicht mehr sagen wollte, und ich kannte das Gefühl selbst gut genug, um das zu respektieren.</p>
+
+<p>Wir sind zusammengekommen, wie das eben passiert, wenn zwei Leute sich in derselben Bäckerei immer öfter über nichts unterhalten, bis aus nichts plötzlich doch etwas wird. Er war siebzehn, ich vierzehn, fast fünfzehn, und ich weiß noch, wie meine Mutter, in einer ihrer wacheren Phasen, gesagt hat, das sei zu viel Altersunterschied.</p>
+
+<p>Sie hat es einmal gesagt. Dann nie wieder. Sie hatte, glaube ich, gerade keine Kraft mehr, sich um irgendwas zu kümmern, das nicht sie selbst betraf.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich erzähle Jannik nicht sofort, wie es zu Hause aussieht.</p>
+
+<p>Ich schäme mich dafür, was lächerlich ist, wenn ich heute darüber nachdenke, weil ich ja nicht diejenige war, die etwas falsch gemacht hat. Aber Scham fragt einen nicht, ob sie gerechtfertigt ist.</p>
+
+<p>Irgendwann sieht er es trotzdem. Er holt mich ab, ich lasse ihn kurz hoch, weil ich etwas vergessen habe, und meine Mutter sitzt im Wohnzimmer, mitten am Nachmittag, mit einem Glas, das sie nicht mal mehr versteckt.</p>
+
+<p>Er sagt in dem Moment nichts dazu.</p>
+
+<p>Aber ein paar Tage später, wir sitzen bei ihm auf dem Bett, irgendeine Serie läuft, keiner schaut wirklich hin, sagt er, so beiläufig, dass ich fast nicht merke, wie ernst er es meint:</p>
+
+<p>„Du kannst auch einfach herziehen. Wenn du willst.“</p>
+
+<p>Ich lache erst mal. „Ganz einfach so.“</p>
+
+<p>„Ganz einfach so.“ Er zuckt mit den Schultern. „Ich hab die Wohnung sowieso. Ist Platz. Und ich glaub, dir würd's guttun.“</p>
+
+<p>„Und wenn das komisch wird? Mit uns, mein ich.“</p>
+
+<p>„Wird's nicht.“ Er sagt das mit einer Sicherheit, die er, glaube ich, selbst nicht ganz hatte, die mir in dem Moment aber gereicht hat.</p>
+
+<p>Ich frage ihn nicht, warum er das anbietet. Ich glaube, ich habe es damals nicht verstanden. Ich glaube, ich verstehe es erst jetzt richtig: Er hat gewusst, wie es sich anfühlt, in einer Wohnung zu sein, in der einen niemand mehr wirklich sieht. Er wollte nicht, dass ich das auch lerne.<br>bitte mache dass das jugendamt luna ihrer mutter weggenommen hat und sie dann im kinderheim war bis sie zu jannik gekommen ist<br>❧</p>
+
+<p>Ich frage meine Mutter nicht um Erlaubnis, ob ich ausziehen darf. Ich sage es ihr nur.</p>
+
+<p>Eigentlich dürfte das so nicht laufen. Ich bin fünfzehn, das hier ist kein Wochenendbesuch, und jede halbwegs aufmerksame Erwachsene hätte an dieser Stelle Fragen gestellt. Meine Mutter stellt keine. Sie nickt nur, unterschreibt irgendwann den Zettel, den ich ihr hinlege, ohne ihn wirklich zu lesen, und dreht sich wieder zum Fernseher.</p>
+
+<p>Die Schule merkt auch nichts. Nicht, weil es besonders gut versteckt ist, sondern weil ich längst weiß, welche Antwort eine Lehrerin zufriedenstellt. Neue Adresse, wegen der Situation zu Hause, vorübergehend bei Verwandten. Niemand fragt nach, bei welchen. Ich liefere die Ausrede immer schon, bevor die eigentliche Frage überhaupt kommt, und Erwachsene hören meistens auf zu fragen, sobald man ihnen irgendeinen Satz anbietet, der halbwegs plausibel klingt.</p>
+
+<p>Ich gehe zur Schule, meine Noten sind okay, ich falle niemandem negativ auf. Genau das ist das Problem. Solange ich funktioniere, sieht niemand genauer hin.</p>
+
+<p>Ich weiß bis heute nicht, ob das bei meiner Mutter Erleichterung war oder einfach zu wenig Kraft, um dagegen zu sein.</p>
+
+<p>Ich habe es ihr nie übel genommen, unterschrieben zu haben.</p>
+
+<p>Ich habe ihr übel genommen, dass sie nicht gefragt hat, ob es mir gut geht.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>An dem Tag, an dem ich einziehe, stellt Jannik zwei Kaffeetassen auf den Tisch, obwohl ich noch nie in seiner Wohnung Kaffee getrunken habe, und sagt, fast ein bisschen stolz: „Ab jetzt kannst du dir hier auch einen machen, wann du willst.“</p>
+
+<p>Es ist so eine kleine Sache. Eine Kaffeemaschine, zwei Tassen.</p>
+
+<p>Aber ich stehe in dieser fremden Küche, mit meinen zwei Taschen und einem Karton, und zum ersten Mal seit Monaten habe ich das Gefühl, dass mich jemand tatsächlich hier haben will. Nicht aus Pflicht. Nicht, weil ich zufällig dazugehöre.</p>
+
+<p>Wir sind beide niemandes Kinder mehr, auf unsere eigene Art. Er, weil seine Eltern tot sind. Ich, weil meine Mutter zwar noch lebt, aber irgendwo unterwegs aufgehört hat, meine zu sein.</p>
+
+<p>Vielleicht ist das der Grund, warum es sich nie komisch angefühlt hat, dass wir beide so jung in dieser Wohnung wohnen. Wir haben nicht gespielt, erwachsen zu sein.</p>
+
+<p>Wir mussten es einfach sein.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Am Abend liegen wir zum ersten Mal in diesem Bett, das jetzt auch meins ist, und er fragt, ganz leise, fast so, als würde er sich nicht trauen:</p>
+
+<p>„Ist das okay so? Für dich?“</p>
+
+<p>Ich denke an mein altes Zimmer. An den Fernseher, der zu laut lief. An das „Okay“, das meine Mutter in Richtung Bildschirm gesagt hat.</p>
+
+<p>„Ja“, sage ich. „Das ist mehr als okay.“</p>
+
+<p>Er legt seinen Arm um mich, und ich schlafe schneller ein als in den ganzen Monaten davor.</p>
+
+<p>Ich weiß in diesem Moment nicht, dass das hier der Anfang von etwas ist, das ich später einmal Zuhause nennen werde.</p>
+
+<p>Ich weiß nur, dass ich zum ersten Mal seit Langem nicht mehr auf etwas warte, das sowieso nicht kommt.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== II ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Zwei</span><h2>Ein ganz normaler Tag</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Mein Wecker klingelt</span> um 6:32 Uhr.</p>
+
+<p>Ich drücke ihn weg, ohne die Augen zu öffnen, und bleibe liegen. Draußen fährt ein Auto vorbei, mit diesem nassen Geräusch, das Reifen im Herbst machen. Irgendwo im Haus geht eine Tür. Jemand ist schon wach, jemand ist immer schon wach. Ich ziehe die Decke bis ans Kinn und höre eine Weile einfach nur zu, wie still mein Zimmer ist.</p>
+
+<p>Eigentlich müsste ich aufstehen.</p>
+
+<p>Eigentlich.</p>
+
+<p>Heute ist Schule. Mathe in der ersten Stunde, danach Physik, später Informatik. Für einen Dienstag ist das ein ziemlich guter Tag. Es gibt schlimmere.</p>
+
+<p>Der Wecker klingelt wieder. 6:37 Uhr.</p>
+
+<p>Ich setze mich auf. Meine Haare stehen in alle Richtungen gleichzeitig ab, ich sehe aus wie etwas, das man aus einem Gebüsch gezogen hat, und es ist mir egal. Ein paar Sekunden starre ich einfach nur auf mein Handy, ohne etwas zu tun.</p>
+
+<p>Dann öffne ich den Wetterbericht. Nicht, weil mich das Wetter interessiert, sondern weil ich einen Grund brauche, noch ein bisschen sitzen zu bleiben.</p>
+
+<p>Neunzehn Grad. Bewölkt. Zwanzig Prozent Regen.</p>
+
+<p>Na super.</p>
+
+<p>Ich werfe das Handy zurück aufs Bett und stehe auf. Ehrlich, das ist der schwierigste Teil am Morgen. Nicht das Aufstehen selbst, sondern der Moment davor, in dem man sich entscheiden muss, es wirklich zu tun.</p>
+
+<p>Im Bad wasche ich mir das Gesicht und putze die Zähne, und dabei sehe ich mich kurz im Spiegel an. Ich sehe aus wie immer. Zumindest glaube ich das.</p>
+
+<p>Manchmal frage ich mich, ob man Menschen ansehen kann, wie es ihnen wirklich geht.</p>
+
+<p>Ich glaube nicht.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Als ich aus dem Bad komme, riecht die ganze Wohnung nach Kaffee. Kaffee ist ungelogen mein Lieblingsgetränk, ich könnte den ganzen Tag nichts anderes trinken, und Jannik weiß das, deshalb läuft die Maschine morgens schon, bevor ich überhaupt wach bin.</p>
+
+<p>Er steht am Herd und macht veganes Rührei. Die Pfanne zischt, es riecht nach Zwiebeln. Er trägt schon das Hemd für die Arbeit, die Ärmel hochgekrempelt, damit beim Kochen nichts drankommt. Jannik ist immer ordentlich, ohne aufgestylt zu wirken, so als wäre ihm das einfach wichtig, auch wenn ihn gerade niemand sieht.</p>
+
+<p>Jannik ist mein Freund, seit fast zwei Jahren jetzt, und seit letztem Herbst wohnen wir hier zusammen, in dieser kleinen Wohnung mit der Balkontür, die klemmt, und dem Kühlschrank, der viel zu laut brummt. Bei meiner Mutter ging es irgendwann nicht mehr, und Jannik hat mich einfach gefragt, ob ich nicht zu ihm ziehen will, so beiläufig, als wäre das keine große Sache. Für ihn war es das vielleicht auch nicht. Für mich war es alles.</p>
+
+<p>„Mooooorgen.“</p>
+
+<p>„Morgen, Prinzessin. Wie hast du geschlafen?“</p>
+
+<p>„Mhhm. Gut“, murmle ich, stelle mich neben ihn und lehne mich an seinen Arm.</p>
+
+<p>Er legt seinen einen Arm um mich, während er mit dem anderen weiterrührt. Es sind vielleicht fünf Sekunden. Aber genau diese fünf Sekunden mag ich morgens am meisten. Ich bin noch halb im Schlaf, ich würde am liebsten sofort wieder ins Bett, und gleichzeitig weiß ich, dass ich gleich losmuss, und irgendwie ist beides okay, solange ich hier stehen bleiben darf.</p>
+
+<p>Dann setze ich mich an den Tisch und stibitze mir das erste Stück direkt aus der Pfanne.</p>
+
+<p>„Hey.“</p>
+
+<p>„Was denn?“</p>
+
+<p>„Nichts“, sagt er und grinst. „Was hast du heute?“</p>
+
+<p>„Mathe, Physik, Informatik“, sage ich mit halbvollem Mund.</p>
+
+<p>„Also deine Lieblingsfächer.“</p>
+
+<p>Ich verdrehe die Augen. „Mathe ja. Physik auch. Informatik sowieso.“</p>
+
+<p>„Dann wird der Tag ja nicht so schlimm.“</p>
+
+<p>„Kommt drauf an, wie langweilig der Lehrer heute ist.“</p>
+
+<p>Wir lachen beide.</p>
+
+<p>Ich esse und scrolle nebenbei durch mein Handy, und überlege schon, was ich nachmittags machen will. Vielleicht an meinem Projekt weiterbasteln. Vielleicht einfach raus.</p>
+
+<p>Ich weiß, dass er heute später nach Hause kommt. Trotzdem freue ich mich jetzt schon darauf. Wie jeden Tag.</p>
+
+<p>Ich mag Schule eigentlich. Ich mag es, wenn etwas plötzlich Sinn ergibt, das vorher keinen ergeben hat. Bei Informatik kann ich sowieso schon fast alles, was wir dort machen, aber ich mag es trotzdem. Wenn ich programmiere, verliere ich mich manchmal komplett darin — ein Problem taucht auf, ich probiere etwas, es funktioniert nicht, ich ändere eine Kleinigkeit, ich probiere es wieder, und irgendwann klappt es. Dann ist da dieser winzige Moment, in dem alles kurz aufgeht.</p>
+
+<p>Ein Dopaminkick für Leute ohne Hobby, sagt Nika immer.</p>
+
+<p>Es ist schwer zu erklären. Aber manchmal fühlt es sich an, als würde mein Kopf für ein paar Minuten aufhören, über irgendetwas anderes nachzudenken. Nur ich und dieses eine, komplett unwichtige Problem.</p>
+
+<p>Ich habe oft darüber nachgedacht, was ich später mal machen will. So richtig weiß ich es nicht. Aber irgendwas mit Computern. Irgendwas, wo ich meinen Kopf benutzen kann. Irgendwas, bei dem ich von niemandem abhängig bin.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Als ich aufschaue, steht Jannik am Küchenfenster und schaut in den Hof.</p>
+
+<p>Einfach so. Die Pfanne steht noch auf der Platte, sein Kaffee wird kalt, und er steht da und schaut raus, als hätte er kurz vergessen, dass er gerade etwas gemacht hat. Sein Blick ist irgendwo, wo ich ihn nicht folgen kann.</p>
+
+<p>„Alles gut?“</p>
+
+<p>Er dreht sich um, und sein Gesicht ist sofort wieder da, ganz normal, als wäre der Moment davor gar nicht passiert.</p>
+
+<p>„Klar. Kurz weggetreten.“</p>
+
+<p>Ich denke mir nichts dabei. Warum sollte ich auch.</p>
+
+<p>Ich schaue auf die Uhr. 7:18 Uhr.</p>
+
+<p>„Ich muss los“, sagt er, steht auf und gibt mir einen Kuss auf den Kopf. „Bis heute Abend. Ich hab dich lieb. Pass auf dich auf.“</p>
+
+<p>„Bis späääääta, ich hab dich lieeeeber“, rufe ich ihm hinterher, während er seine Sachen greift und zur Tür rausstürmt.</p>
+
+<p>Ich ziehe meine Schuhe an, nehme den Rucksack und gehe.</p>
+
+<p>Draußen ist es kühler, als ich dachte. Wetter-Apps, denke ich mir, fünfundzwanzig Prozent Trefferquote, und das an guten Tagen. Ich stecke die Hände in die Jackentaschen und laufe los, an nassen Blättern vorbei, die am Bordstein kleben.</p>
+
+<p>Unterwegs kommt mir eine Idee für mein Projekt. Einfach so, aus dem Nichts, zwischen zwei Ampeln. Ich krame mein Handy raus und tippe sie in die Notizen, damit sie nicht wieder verschwindet.</p>
+
+<p>Ich mag solche Momente. Wenn der Kopf frei genug ist, dass die besten Ideen einfach reinlaufen können.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>In der Schule ist es laut. Zu laut. Menschen stehen auf den Fluren, reden alle gleichzeitig, lachen, beschweren sich über Lehrer, über Tests, über das Wetter.</p>
+
+<p>Ich gehe in den Klassenraum und setze mich.</p>
+
+<p>„Morgen.“</p>
+
+<p>„Morgen.“</p>
+
+<p>Mathematik. Ich mag Mathe, weil es ehrlich ist. Eine Aufgabe ist richtig oder falsch. Es gibt eine Lösung. Manchmal dauert es, bis man sie findet, aber sie ist da, sie wartet, sie läuft nicht weg.</p>
+
+<p>Solche Kleinigkeiten machen mich tatsächlich glücklich. Ich weiß, dass das komisch klingt. Aber ich mag es einfach, Dinge zu verstehen.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Dann ist Pause, und ich packe mein Zeug so schnell zusammen, dass die Hälfte falsch herum im Rucksack landet, und renne raus.</p>
+
+<p>Nika wartet schon.</p>
+
+<p>„Heeey!“</p>
+
+<p>Sie fällt mir um den Hals, als hätten wir uns wochenlang nicht gesehen, dabei haben wir bis halb zwölf gestern Nacht geschrieben.</p>
+
+<p>„Naaah?“</p>
+
+<p>Wir gehen in die Cafeteria und tauschen erst mal den kompletten Gossip aus. Wer mit wem, wer nicht mehr mit wem, und warum unser Geschichtslehrer wirklich jedes Mal aufs Neue beweist, wie seltsam ein Mensch sein kann.</p>
+
+<p>Nika ist die einzige richtige Freundin, die ich je hatte. Wir sind beide sechzehn und kennen uns schon seit der Grundschule, seit dem Tag, an dem sie sich einfach neben mich gesetzt hat, ohne zu fragen, und seitdem nie wieder woanders gesessen hat. Aber ich brauche auch nicht mehr. Sie ist die beste, die man sich vorstellen kann.</p>
+
+<p>Mein Handy vibriert in der Hosentasche. Nika schaut mich an, dann einmal demonstrativ durch die ganze Cafeteria.</p>
+
+<p>„Keine Wissensverteiler in Sicht. Du darfst.“</p>
+
+<p>Ich erhasche einen Blick aufs Display.</p>
+
+<p><em>Was willst du heute Abend essen?</em></p>
+
+<p>Ich tippe: <em>Keine Ahnung. Entscheide du.</em></p>
+
+<p>Ein paar Sekunden später: <em>Dann gibt's Nudeln.</em></p>
+
+<p>Ich muss grinsen. <em>Nudeln gehen immer.</em></p>
+
+<p>Ich stecke das Handy wieder ein. Gerade rechtzeitig, denn da taucht auch schon der Geschichtslehrer auf.</p>
+
+<p>„Rette sich, wer kann“, murmelt Nika.</p>
+
+<p>Physik ist langweilig, gleiches Thema wie letzte Stunde, nur diesmal auf Arbeitsblättern. Informatik genauso. Ich sitze da und habe das Gefühl, gemeinsam mit den Arduinos zu verstauben, die seit Jahren im Schrank liegen und die noch nie irgendjemand angefasst hat.</p>
+
+<p>Dann klingelt es endlich, eher ein kläglicher Schrei als eine Klingel, aber egal. Hauptsache Schluss.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Zu Hause werfe ich meinen Rucksack in mein Zimmer und setze mich an den Computer.</p>
+
+<p>Eigentlich wollte ich nur kurz eine Sache ausprobieren. Aus kurz wird eine Stunde. Dann zwei. Ich merke es erst, als ich zufällig auf die Uhr schaue.</p>
+
+<p>17:46 Uhr.</p>
+
+<p>„Scheiße.“</p>
+
+<p>Ich stehe auf, gehe in die Küche und fange an aufzuräumen. Nicht weil ich muss. Ich mache das gern. Es hat etwas Beruhigendes, wenn Dinge dahin zurückkommen, wo sie hingehören.</p>
+
+<p>Ich stelle Teller raus und überlege, was wir später noch machen könnten. Vielleicht einen Film. Vielleicht einfach nur nebeneinanderliegen und nichts.</p>
+
+<p>Dann höre ich die Haustür.</p>
+
+<p>Ich drehe mich um und renne los.</p>
+
+<p>„Heyyyyyyy!“ Ich springe ihn regelrecht an und schlinge mich um seinen Hals. Er riecht nach der kühlen Luft aus dem Serverraum und ein bisschen nach dem Kaffee vom Automaten dort, und den Werksausweis am Lanyard hat er noch um den Hals, wenn er zur Tür reinkommt.</p>
+
+<p>„Heyy. Na, Prinzessin?“ Er lacht und drückt mir einen Kuss auf die Stirn.</p>
+
+<p>Er stellt seine Sachen ab und schleift mich, immer noch an ihm hängend, in die Küche.</p>
+
+<p>„Und? Wie war Zwangsbildung heute?“</p>
+
+<p>„War okay.“</p>
+
+<p>„Nur okay?“</p>
+
+<p>„Ne, ich sitze am liebsten den ganzen Tag im Informatikunterricht und lasse mir Dinge erklären, die ich schon kann. Weißte.“</p>
+
+<p>„Ja gut“, lacht er. „Ich hab's verstanden.“</p>
+
+<p>Wir kochen Nudeln. Er schneidet, ich rühre, wir kommen uns gegenseitig im Weg um und brauchen dadurch ungefähr doppelt so lange wie nötig. Es riecht nach Knoblauch, und irgendwann fliegt eine Nudel aus der Pfanne, weil er zu wild rührt, und wir lachen beide, als wäre das das Lustigste, was seit Wochen passiert ist.</p>
+
+<p>Wir reden über nichts Besonderes. Über Schule. Über seine Arbeit. Über Kleinigkeiten, die tagsüber passiert sind und die morgen schon keiner mehr weiß.</p>
+
+<p>Später liegen wir auf dem Bett. Im Fernseher läuft irgendetwas, dem ich nur mit einem halben Ohr zuhöre. Sein Arm liegt um mich.</p>
+
+<p>Ich schließe die Augen.</p>
+
+<p>Ich denke nicht darüber nach, was morgen ist. Nicht darüber, was in fünf Jahren ist. Nicht darüber, ob das alles irgendwann funktionieren wird.</p>
+
+<p>Ich denke nur: <em>Ich bin hier.</em></p>
+
+<p>Und gerade reicht das vollkommen.</p>
+
+<p>Es ist ein ganz normaler Abend. Ein ganz normaler Tag.</p>
+
+<p>Für mich ist es einfach Dienstag.</p>
+
+<p>Und morgen ist wieder Mittwoch.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== III ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Drei</span><h2>Der Platz bleibt leer</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Am nächsten Morgen</span> klingelt mein Wecker wieder um 6:32 Uhr.</p>
+
+<p>Ich taste danach, drücke ihn weg und drehe mich um. Ich weiß nicht, warum ich so müde bin. Ich habe nicht mal schlecht geschlafen, jedenfalls nicht so schlecht, dass ich mich daran erinnern würde. Es war eher dieses Dazwischen, bei dem man alle paar Stunden kurz aufwacht, auf die Uhr schaut, sich wieder umdreht und hofft, dass der Rest der Nacht schneller vergeht. Draußen ist es noch fast dunkel, nur ein schmaler Streifen Laternenlicht liegt quer über der Zimmerdecke.</p>
+
+<p>Irgendwann greife ich nach meinem Handy.</p>
+
+<p>6:34 Uhr.</p>
+
+<p>Ich entsperre den Bildschirm und starre darauf, obwohl ich selbst nicht genau weiß, was ich erwarte.</p>
+
+<p>Keine Nachrichten.</p>
+
+<p>Das ist komisch. Nika schreibt eigentlich immer. Irgendeinen unnötigen Snap, irgendeinen Spruch über den Geschichtslehrer, oder einfach nur die tägliche Ankündigung, dass sie schon wieder zu spät kommen wird, was bei ihr inzwischen weniger eine Information ist als eine Art Ritual.</p>
+
+<p>Aber da ist nichts.</p>
+
+<p>Ich lasse den Bildschirm noch einen Moment an, als könnte in genau dieser Sekunde doch noch etwas ankommen. Dann lege ich das Handy weg.</p>
+
+<p>Wahrscheinlich schläft sie noch.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich stehe auf, mache mich fertig und gehe in die Küche, wo Jannik natürlich schon wieder am Werk ist, als hätte er um diese Uhrzeit bereits den halben Tag hinter sich.</p>
+
+<p>„Mooooooooooooooorgen“, murmle ich und schlinge meine Arme von hinten um seinen Bauch. „Waaaas giiibt's zu fuuuddern?“</p>
+
+<p>„Guten Morgen, Prinzessin. Heute leider nur Müsli.“</p>
+
+<p>Er dreht sich zu mir um, und sein Blick wird eine Spur ernster.</p>
+
+<p>„Schlecht geschlafen?“</p>
+
+<p>„Schon, ja.“</p>
+
+<p>„Ohje. Dann iss erst mal was, das hilft.“</p>
+
+<p>Kurz darauf stellt er mir meinen Kaffee hin. Latte Macchiato, selbst gemacht, und die Wärme zieht sofort durch das Glas in meine Hände.</p>
+
+<p>Ich schaue ihn an und forme lautlos mit den Lippen: <em>Ich liebe dich.</em></p>
+
+<p>Er grinst und formt lautlos zurück: <em>Iss.</em></p>
+
+<p>Vor mir steht Schokomüsli mit Joghurt. Ich löffle ein bisschen davon, ohne wirklich hinzuschauen, und starre nebenbei immer wieder auf mein Handy.</p>
+
+<p>Immer noch nichts.</p>
+
+<p>Irgendwann halte ich es nicht mehr aus und schreibe ihr.</p>
+
+<p><em>Bist du waaaach?</em></p>
+
+<p>Dann lege ich das Handy neben die Schüssel und warte.</p>
+
+<p>Eine Minute. Zwei.</p>
+
+<p>Nichts.</p>
+
+<p>„Nika schreibt nicht“, sage ich, mehr zu mir selbst als zu ihm.</p>
+
+<p>„Vielleicht schläft sie noch.“</p>
+
+<p>„Die schläft nie so lange.“</p>
+
+<p>Er zuckt mit den Schultern. „Dann meldet sie sich später.“</p>
+
+<p>„Hmm. Ja.“</p>
+
+<p>Ich stecke das Handy ein und versuche, den Gedanken loszuwerden. Wahrscheinlich hat er recht. Es gibt tausend Gründe, warum jemand um halb sieben morgens nicht aufs Handy schaut, und keiner davon bedeutet irgendetwas.</p>
+
+<p>Ich verabschiede mich, ziehe meine Schuhe an und gehe los.</p>
+
+<p>Draußen ist es wieder grau. Dieser Himmel, der aussieht, als hätte der Tag selbst keine Lust aufzustehen. Ich laufe denselben Weg wie gestern, biege an derselben Kreuzung ab, komme am Bäcker vorbei und überlege kurz, ob ich mir was hole.</p>
+
+<p>Dann denke ich an Nika, die sich jedes einzelne Mal darüber lustig macht, dass ich morgens um sieben Kuchen essen will.</p>
+
+<p>Ich muss grinsen.</p>
+
+<p><em>Kuchen ist halt auch geil, menno.</em></p>
+
+<div class="scenebreak">❧</div>
+
+<p>In der Schule ist alles wie immer. Menschen auf den Fluren, alle reden gleichzeitig, irgendwer rennt noch schnell zu seinem Klassenraum, irgendwer beschwert sich über einen Test, als wäre das gerade das größte Problem auf diesem Planeten. Es riecht nach nassen Jacken und Kaffee aus dem Automaten, wie an jedem anderen Morgen auch.</p>
+
+<p>Ich höre nur halb hin.</p>
+
+<p>Ich gehe rein und setze mich auf meinen Platz.</p>
+
+<p>Der Stuhl neben mir ist leer.</p>
+
+<p>Deutsch haben wir zusammen.</p>
+
+<p>Ich schaue zur Tür. Sie kommt bestimmt gleich.</p>
+
+<p>7:59 Uhr.</p>
+
+<p>Es klingelt.</p>
+
+<p>Sie kommt nicht.</p>
+
+<p>Ich hole meine Sachen raus und nehme mir vor, nicht ständig zur Tür zu schauen. Es funktioniert ungefähr zwanzig Sekunden lang.</p>
+
+<p>Dann kommt unser Deutschlehrer rein und geht die Liste durch. Ein Name nach dem anderen.</p>
+
+<p>Dann kommt Nika.</p>
+
+<p>Er hält kurz inne und schaut noch einmal auf das Blatt.</p>
+
+<p>„Nika ist heute nicht da.“</p>
+
+<p>Ich drehe mich zur Tür.</p>
+
+<p>Vielleicht kommt sie ja doch noch. Vielleicht rennt sie gleich rein, zwanzig Minuten zu spät, komplett außer Atem, mit zerzausten Haaren und halb offenem Rucksack, entschuldigt sich mit irgendeiner katastrophal schlechten Ausrede und setzt sich neben mich, als wäre nichts gewesen.</p>
+
+<p>Ich kann sie so genau vor mir sehen, dass ich unwillkürlich grinsen muss.</p>
+
+<p>Dann beginnt der Unterricht.</p>
+
+<p>Ich versuche zuzuhören, aber die Wörter verschwimmen ineinander. Irgendein Gedicht, irgendeine Analyse, irgendwelche Zeilen, die ich an einem normalen Tag wahrscheinlich sofort verstehen würde.</p>
+
+<p>Ich lese die erste Zeile. Dann die zweite.</p>
+
+<p>Dann schaue ich wieder zur Tür.</p>
+
+<p>Nichts.</p>
+
+<p>Kann doch nicht sein, dass sie mich ausgerechnet bei Deutsch alleine sitzen lässt.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ungefähr zwanzig Minuten später klopft es.</p>
+
+<p>Unser Deutschlehrer schaut auf. Die Tür geht auf, und unser Klassenlehrer steht da. Er kommt zwei Schritte rein und sagt etwas so leise, dass ich kein einziges Wort verstehe.</p>
+
+<p>Dann schauen beide kurz zu mir.</p>
+
+<p>Nur für einen Moment.</p>
+
+<p>Aber ich sehe es.</p>
+
+<p>Und plötzlich wird mir kalt. Es liegt nicht am Fenster und nicht an der Raumtemperatur. Diese Kälte kommt von innen, kriecht über meine Arme und setzt sich irgendwo unterhalb meines Magens fest, während ich mir gleichzeitig mit aller Kraft einrede, dass das gar nichts zu bedeuten hat. Ich reibe mir über die Arme, obwohl ich weiß, dass das nichts bringt.</p>
+
+<p>Der Klassenlehrer geht wieder.</p>
+
+<p>Unser Deutschlehrer bleibt stehen. Er legt seinen Stift auf den Tisch, langsam, als wäre das eine Entscheidung.</p>
+
+<p>„Luna.“</p>
+
+<p>Ich schrecke auf.</p>
+
+<p>„Ja?“</p>
+
+<p>Meine Stimme klingt plötzlich viel kleiner als sonst.</p>
+
+<p>„Kommst du bitte kurz mit raus?“</p>
+
+<p>„Warum?“</p>
+
+<p>Er zögert.</p>
+
+<p>„Nur kurz.“</p>
+
+<p>Ich stehe auf und spüre sofort, wie alle Blicke im Raum an mir hängen. Ich hasse das. Besonders, wenn ich selbst nicht weiß, warum.</p>
+
+<p>Die Tür fällt hinter mir zu.</p>
+
+<p>Mein Lehrer steht vor mir und sieht anders aus als sonst. Nicht wie jemand, der gleich etwas erklärt. Eher wie jemand, der gerade verzweifelt nach den richtigen Worten sucht für etwas, für das es keine richtigen Worte gibt.</p>
+
+<p>„Was ist?“, frage ich.</p>
+
+<p>Er atmet einmal tief ein.</p>
+
+<p>„Ich weiß nicht so recht, wie ich dir das sagen soll.“</p>
+
+<p>Und noch bevor er weiterspricht, ist da schon diese furchtbare Gewissheit irgendwo tief in meinem Bauch, gegen die mein Kopf sich mit allem wehrt, was er hat.</p>
+
+<p>„Es geht um Nika.“</p>
+
+<p>„Was ist mit ihr?“</p>
+
+<p>Er schaut mich an.</p>
+
+<p>„Sie wird heute nicht mehr kommen.“</p>
+
+<p>„Warum? Was heißt das? Was ist mit ihr?“</p>
+
+<p>Er sieht kurz zur Seite.</p>
+
+<p>„Sie hatte gestern Abend einen Autounfall.“</p>
+
+<p>Ich starre ihn an. Für einen Moment sage ich gar nichts, weil mein Kopf versucht, diesen Satz irgendwo abzulegen, und keinen Platz dafür findet.</p>
+
+<p>„Nika ist gestern Abend im Krankenhaus an ihren Verletzungen gestorben.“</p>
+
+<p>Ich höre die Worte.</p>
+
+<p>Ich höre jedes einzelne davon.</p>
+
+<p>Aber sie kommen nicht an.</p>
+
+<p>„Es tut mir leid.“</p>
+
+<p>Ich lache kurz auf. Nicht, weil irgendetwas lustig wäre. Einfach, weil mein Kopf in diesem Moment offenbar nicht weiß, was er sonst mit meinem Gesicht anfangen soll.</p>
+
+<p>„Nein.“</p>
+
+<p>Ich schüttle den Kopf.</p>
+
+<p>„Nein, nein, nein.“</p>
+
+<p>„Luna …“</p>
+
+<p>„Nein.“</p>
+
+<p>Meine Stimme fängt an zu zittern.</p>
+
+<p>„Das stimmt nicht.“</p>
+
+<p>Die Tränen kommen, bevor ich es überhaupt merke.</p>
+
+<p>„Das kann nicht sein.“</p>
+
+<p>Mein Lehrer sagt nichts.</p>
+
+<p>„Sie kann doch nicht einfach tot sein.“</p>
+
+<p>Die letzten Worte kommen kaum noch über meine Lippen.</p>
+
+<p>„Sie war doch gestern noch da.“</p>
+
+<p>Ich sehe ihn an und erkenne sofort, dass auch er keine Antwort darauf hat.</p>
+
+<p>„Wir wollten heute zusammen essen.“</p>
+
+<p>Es klingt fast wie ein Beweis. Als könnte dieser eine Satz belegen, dass Nika unmöglich tot sein kann. Wir hatten doch noch einen Plan. Für heute.</p>
+
+<p>Ich hole mein Handy raus und öffne ihre Nummer.</p>
+
+<p>Anrufen.</p>
+
+<p>Es klingelt.</p>
+
+<p>Noch einmal.</p>
+
+<p>Dann die Mailbox. Ihre Stimme, aufgenommen vor zwei Jahren, viel zu laut und viel zu fröhlich.</p>
+
+<p>Ich lege auf.</p>
+
+<p>„Vielleicht haben die was verwechselt“, sage ich leise. „Vielleicht ist das ein anderer Name.“</p>
+
+<p>Er bleibt still.</p>
+
+<p>„Vielleicht ist das gar nicht Nika.“</p>
+
+<p>Wieder keine Antwort.</p>
+
+<p>Ich sehe es in seinem Gesicht.</p>
+
+<p>Ich weiß es eigentlich schon.</p>
+
+<p>Aber irgendein Teil von mir weigert sich einfach.</p>
+
+<p>„Ich muss zurück in den Unterricht.“</p>
+
+<p>Ich weiß selbst nicht, warum ich das sage.</p>
+
+<p>Er schüttelt leicht den Kopf. „Du musst gerade gar nichts.“</p>
+
+<p>Ich gehe trotzdem zurück.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich setze mich auf meinen Platz.</p>
+
+<p>Und da ist er wieder. Der leere Stuhl.</p>
+
+<p>Alles sieht genauso aus wie vor zehn Minuten. Die Tafel, die Hefte, die Stifte, das Fenster, die Uhr. Alles steht noch exakt da, wo es vorher stand.</p>
+
+<p>Nur Nika nicht.</p>
+
+<p>Ich starre auf ihren Platz und warte trotzdem darauf, dass die Tür aufgeht.</p>
+
+<p>Vielleicht kommt sie zwanzig Minuten zu spät. Vielleicht ist sie außer Atem. Vielleicht hat sie wieder irgendeine bescheuerte Ausrede.</p>
+
+<p>Irgendwas.</p>
+
+<p>Aber sie kommt nicht.</p>
+
+<p>Vorne redet der Lehrer weiter. Ich versuche nicht mal mehr zuzuhören. Mein Blick bleibt an der Uhr hängen.</p>
+
+<p>8:17.</p>
+
+<p>8:18.</p>
+
+<p>8:19.</p>
+
+<p>Die Zeit läuft einfach weiter.</p>
+
+<p>Und genau das ist das Unerträglichste daran. Sie läuft weiter, als wäre nichts passiert. Als wäre heute nur ein ganz normaler Dienstag, an dem man Unterricht hat und Tests schreibt und sich darüber beschwert, dass die Pause zu kurz ist.</p>
+
+<p>Jemand blättert in seinem Heft.</p>
+
+<p>Jemand hustet.</p>
+
+<p>Draußen fährt ein Auto vorbei.</p>
+
+<p>Alles ist normal.</p>
+
+<p>Nur für mich nicht.</p>
+
+<p>Ich sitze da und denke immer wieder denselben Satz, und jedes Mal fühlt er sich genauso falsch an wie beim ersten Mal.</p>
+
+<p><em>Sie ist tot.</em></p>
+
+<p>Ich kriege diesen Satz nicht mit ihr zusammen. Nika und tot passen für meinen Kopf einfach nicht in denselben Raum.</p>
+
+<p>Nika redet.</p>
+
+<p>Nika lacht zu laut.</p>
+
+<p>Nika klaut mein Essen.</p>
+
+<p>Nika schreibt mir um halb eins nachts, ob ich noch wach bin.</p>
+
+<p>Nika ist da.</p>
+
+<p>Ich schaue wieder auf den leeren Platz und stelle mir vor, wie sie dort sitzt und mir irgendwann von der Seite irgendeinen kompletten Unsinn zuflüstert, den natürlich niemand sonst hören darf.</p>
+
+<p>Ich sehe sie so deutlich, dass ich für einen Moment fast glaube, sie wäre wirklich da.</p>
+
+<p>Dann blinzle ich.</p>
+
+<p>Der Platz ist leer.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>In der Pause gehe ich automatisch in die Cafeteria.</p>
+
+<p>Ich weiß nicht mal genau, warum. Vielleicht, weil wir hier verabredet waren. Vielleicht, weil irgendein Teil von mir immer noch glaubt, dass sie einfach auftaucht.</p>
+
+<p>Ich setze mich an unseren Tisch.</p>
+
+<p>Allein.</p>
+
+<p>Ich schaue auf den Stuhl gegenüber und kann ihn irgendwann nicht mehr ansehen.</p>
+
+<p>Ich hole mein Handy raus und öffne unseren Chat. Ich scrolle nach oben. Immer weiter. Nachrichten von gestern, von vorgestern, von letzter Woche. Bilder, Sprachnachrichten, Insider, die kein Mensch außer uns beiden versteht, und seitenlange Texte über irgendeinen komplett unwichtigen Gossip, der uns gestern noch wichtig genug war, um eine Stunde darüber zu reden.</p>
+
+<p>Alles ist noch da.</p>
+
+<p>Jedes Wort. Jedes Bild. Jede Erinnerung.</p>
+
+<p>Nur sie nicht.</p>
+
+<p>Ich sperre das Handy. Dann entsperre ich es sofort wieder.</p>
+
+<p>Ich weiß nicht, was ich erwarte. Eine neue Nachricht. Irgendein Zeichen. Irgendeinen winzigen Beweis dafür, dass das alles nicht stimmt.</p>
+
+<p>Um mich herum reden Menschen und lachen und beschweren sich über belanglose Dinge. Irgendwo kippt jemand sein Getränk um und flucht. Irgendwo fällt ein Löffel zu Boden. Der Geruch von Pommes und Spülmittel hängt in der Luft, genau wie immer.</p>
+
+<p>Alles ist normal.</p>
+
+<p>Nur für mich nicht.</p>
+
+<p>Und ich glaube, erst in diesem Moment fange ich an zu verstehen, was daran das Schlimmste ist.</p>
+
+<p>Es ist nicht der Gedanke, dass sie tot ist.</p>
+
+<p>Es ist der Gedanke, dass ich sie nie wiedersehen werde.</p>
+
+<p>Nie wieder.</p>
+
+<p>Kein „Heeey“. Keine Umarmung, bei der sie mich fast umreißt. Kein Lästern über Lehrer. Kein Gossip in der Pause. Keine dummen Witze. Keine Nachrichten mitten in der Nacht.</p>
+
+<p>Kein „Bist du noch wach?“.</p>
+
+<p>Nichts.</p>
+
+<p>Ich schaue auf den Platz gegenüber.</p>
+
+<p>Leer.</p>
+
+<p>Und plötzlich ist dieses Wort keine Beschreibung mehr, sondern etwas, das sich durch meinen ganzen Körper zieht.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich weiß nicht, wie lange ich dort sitze.</p>
+
+<p>Irgendwann klingelt es, und alle stehen auf und gehen zurück in den Unterricht, als wäre das hier einfach nur eine weitere Pause gewesen.</p>
+
+<p>Ich stehe auch auf. Ich gehe auch zurück.</p>
+
+<p>Die nächste Stunde beginnt. Dann die nächste. Dann noch eine.</p>
+
+<p>Und irgendwo dazwischen wird mir langsam klar, dass es nicht leichter wird, nur weil ein paar Stunden vergangen sind.</p>
+
+<p>Nika kommt nicht mehr.</p>
+
+<p>Nicht später. Nicht morgen. Nicht nächste Woche.</p>
+
+<p>Nie wieder.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== IV ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Vier</span><h2>Sieben Tage</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Als ich nach Hause komme</span>, fühlt es sich nicht an, als wäre ich überhaupt irgendwo gewesen.</p>
+
+<p>Ich schließe auf, stelle den Rucksack neben die Tür und bleibe im Flur stehen, ohne zu wissen, was jetzt eigentlich der nächste Schritt ist. Die Wohnung ist still, nur der Kühlschrank brummt leise vor sich hin.</p>
+
+<p>Normalerweise würde ich sofort in mein Zimmer gehen. Computer an. Irgendwas programmieren.</p>
+
+<p>Ich lehne mich mit dem Rücken gegen die Tür und sinke auf den Boden.</p>
+
+<p>Heute habe ich keine Ahnung, wie man das macht.</p>
+
+<p>Jannik ist noch nicht da. Also lege ich mich auf mein Bett. Nur kurz. Das sage ich mir zumindest.</p>
+
+<p>Ich ziehe die Decke über mich, obwohl mir nicht kalt ist, und starre die Wand an.</p>
+
+<p>Irgendwann nehme ich mein Handy und öffne unseren Chat.</p>
+
+<p>Ihre letzte Nachricht.</p>
+
+<p><em>Bis morgen haha.</em></p>
+
+<p>Ich starre auf diese drei Wörter, bis sie anfangen, sich falsch anzufühlen. Dann lege ich das Handy weg und schließe die Augen.</p>
+
+<p>Ich weiß nicht was ich fühle.<br>Ich weiß nicht, was ich fühlen soll.</p>
+
+<p>Ich bin traurig. Ich glaube zumindest, dass ich traurig bin. Aber es fühlt sich nicht echt an. Es ist eher, als würde irgendein Teil von mir immer noch darauf warten, dass morgen alles wieder normal ist und Nika neben mir sitzt, als wäre nie irgendwas gewesen.</p>
+
+<p>Vielleicht ist das mein Kopf, der mich gerade schützt.</p>
+
+<p>Vielleicht bin ich auch einfach zu blöd, um zu verstehen, was passiert ist.</p>
+
+<p>Ich weiß es nicht.</p>
+
+<p>Ich liege einfach da.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Als die Tür aufgeht, höre ich Janniks Schritte im Flur.</p>
+
+<p>„Luna?“</p>
+
+<p>Ich antworte nicht.</p>
+
+<p>Er kommt rein.</p>
+
+<p>„Prinzessin?“</p>
+
+<p>Ich öffne die Augen.</p>
+
+<p>„Hey.“</p>
+
+<p>Er setzt sich auf die Bettkante, und ich sehe sofort dieses Gesicht, das er immer macht, wenn er sich Sorgen macht und versucht, es nicht zu zeigen.</p>
+
+<p>„Wie war dein Tag?“</p>
+
+<p>Für einen Moment will ich alles erzählen. Dass Nika tot ist. Dass ich sechs Stunden neben ihrem leeren Stuhl gesessen habe. Dass ich auf die Tür gestarrt habe wie eine Idiotin. Dass ich in der Cafeteria alleine saß, an unserem Tisch, und dass ich überhaupt keine Ahnung habe, was ich jetzt machen soll.</p>
+
+<p>Aber als ich den Mund aufmache, kommt nur:</p>
+
+<p>„Scheiße.“</p>
+
+<p>Er sagt nichts. Er schaut mich nur an und zieht mich zu sich.</p>
+
+<p>Und da fange ich an zu weinen.</p>
+
+<p>Nicht leise. Nicht kontrolliert. Sondern so, als würde alles auf einmal einstürzen, was ich den ganzen Tag zusammengehalten habe.</p>
+
+<p>Ich klammere mich an ihn und verstecke mein Gesicht an seiner Schulter. Er streicht mir über den Rücken.</p>
+
+<p>„Ist okay.“</p>
+
+<p>Ich schüttle den Kopf. „Nein.“</p>
+
+<p>„Du musst gerade nichts machen.“</p>
+
+<p>„Sie ist tot.“</p>
+
+<p>Mehr bringe ich nicht raus.</p>
+
+<p>Er sagt nichts darauf.</p>
+
+<p>Was soll man auch sagen. Es gibt keinen Satz, der Nika zurückbringt.</p>
+
+<p>Also hält er mich einfach nur fest, so lange, bis mein Atem irgendwann von selbst ruhiger wird.</p>
+
+<p>Und für diesen Moment bin ich einfach nur froh, dass es ihn gibt.</p>
+
+<div class="scenebreak">❧</div>
+
+<p class="daymark">Tag eins</p>
+
+<p>Am nächsten Morgen gehe ich nicht zur Schule.</p>
+
+<p>Ich sage nicht, dass ich nicht will. Ich sage überhaupt nichts. Als der Wecker klingelt, mache ich ihn aus und bleibe liegen.</p>
+
+<p>Irgendwann steht Jannik in der Tür.</p>
+
+<p>„Willst du was essen?“</p>
+
+<p>„Später.“</p>
+
+<p>Ich weiß schon beim Sagen, dass ich nicht später essen werde. Ich sage es trotzdem.</p>
+
+<p>Er lässt mich liegen, und ich bin ihm dankbar dafür.</p>
+
+<p>Den ganzen Vormittag passiert nichts. Ich liege im Bett, schaue aus dem Fenster, scrolle durch mein Handy, öffne irgendwelche Apps, die ich nach zehn Sekunden wieder schließe, weil mich nichts davon interessiert. Draußen zieht der Himmel in Grautönen vorbei, ohne dass sich irgendwas wirklich ändert.</p>
+
+<p>Ich könnte den Computer anmachen. Ich könnte programmieren. Ich könnte was spielen. Ich könnte einen Film schauen. Ich könnte duschen.</p>
+
+<p>Eigentlich könnte ich alles.</p>
+
+<p>Ich will nur nichts davon.</p>
+
+<p>Es ist nicht mal so, dass ich bewusst denke: <em>Ich mache heute nichts.</em></p>
+
+<p>Es passiert einfach.</p>
+
+<p>Mittags bringt Jannik mir etwas ins Zimmer.</p>
+
+<p>„Du musst nichts aufessen.“</p>
+
+<p>Ich setze mich halb auf und nehme zwei Bissen. Dann stelle ich den Teller weg.</p>
+
+<p>„Kein Hunger.“</p>
+
+<p>Das stimmt nicht. Mein Magen ist leer und tut weh. Aber Hunger haben und essen wollen sind seit gestern zwei völlig verschiedene Dinge geworden.</p>
+
+<div class="scenebreak">❧</div>
+
+<p class="daymark">Tag zwei</p>
+
+<p>Ich stehe im Bad und schaue in den Spiegel.</p>
+
+<p>Ich sehe müde aus. Meine Augen sind rot und geschwollen, meine Haare hängen mir ins Gesicht.</p>
+
+<p>Ich denke darüber nach, zu duschen. Ich stehe sogar ein paar Sekunden davor.</p>
+
+<p>Dann gehe ich wieder zurück ins Bett.</p>
+
+<p>Am Nachmittag schreibt mir jemand aus meiner Klasse. Zwei Zeilen, gut gemeint.</p>
+
+<p><em>Tut mir voll leid wegen Nika. Wenn du reden willst, meld dich.</em></p>
+
+<p>Ich starre eine Viertelstunde auf diese Nachricht und weiß nicht, was ich darauf antworten soll.</p>
+
+<p>Am Ende antworte ich gar nicht.</p>
+
+<div class="scenebreak">❧</div>
+
+<p class="daymark">Tag drei</p>
+
+<p>Ich gehe kurz zur Schule, nur zwei Stunden.</p>
+
+<p>Nicht, weil ich will, sondern weil ich denke, dass ich vielleicht einfach wieder anfangen muss. Vielleicht wird es besser, wenn ich wieder einen normalen Ablauf habe. Vielleicht hört mein Kopf auf, ständig an sie zu denken, wenn genug anderes passiert.</p>
+
+<p>Es funktioniert natürlich nicht.</p>
+
+<p>Ich sitze im Unterricht und sehe die Aufgaben vor mir und verstehe nicht, was ich da eigentlich lesen soll. Normalerweise könnte ich mich stundenlang in so etwas verbeißen. Jetzt ist da nur dieses dumpfe Rauschen.</p>
+
+<p>Ich schaue auf die Uhr. Dann nach vorne. Dann auf mein Handy.</p>
+
+<p>Es gibt keinen Grund, auf mein Handy zu schauen. Ich weiß, dass keine Nachricht kommt.</p>
+
+<p>Trotzdem mache ich es. Immer wieder.</p>
+
+<p>Manchmal öffne ich sogar ihren Chat, nur um ihn nach drei Sekunden wieder zu schließen.</p>
+
+<p>Ich glaube, es liegt daran, dass das die letzte Stelle ist, an der sie noch existiert.</p>
+
+<p>In meinem Handy ist sie noch da. In den Nachrichten. Auf den Bildern. In den Sprachnachrichten. In all den kleinen dummen Sachen, die wir uns geschickt haben.</p>
+
+<p>Wenn ich nach oben scrolle, kann ich sie sehen. Wie sie schreibt. Wie sie redet. Wie sie mich nervt.</p>
+
+<p>Es fühlt sich fast so an, als könnte ich sie durch mein Handy noch erreichen.</p>
+
+<p>Und gleichzeitig weiß ich genau, dass ich es nicht kann.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Zu Hause fragt Jannik, ob alles okay ist.</p>
+
+<p>Ich sage: „Ja.“</p>
+
+<p>Immer dieselbe Antwort.</p>
+
+<p>„Ja.“</p>
+
+<p>Auch wenn es nicht stimmt. Auch wenn wir beide wissen, dass es nicht stimmt.</p>
+
+<p>Ich weiß nicht mal, warum ich das sage. Vielleicht, weil ich keine Ahnung habe, was ich sonst sagen soll.</p>
+
+<div class="scenebreak">❧</div>
+
+<p class="daymark">Tag vier</p>
+
+<p>Ich fange an, die Uhrzeit nicht mehr richtig wahrzunehmen.</p>
+
+<p>Ich wache auf und weiß nicht, ob es Vormittag oder Nachmittag ist. Ich schaue aufs Handy.</p>
+
+<p>11:43 Uhr.</p>
+
+<p>Ich sollte längst aufgestanden sein. Stattdessen bleibe ich liegen.</p>
+
+<p>Ich denke darüber nach, aufzustehen. Dann denke ich darüber nach, warum ich eigentlich aufstehen sollte. Meine Beine fühlen sich an, als würden sie unter der Decke einfach immer schwerer werden.</p>
+
+<p>Keine Schule. Kein Plan. Kein Grund. Keine Energie.</p>
+
+<p>Also bleibe ich liegen.</p>
+
+<p>Für andere klingt das wahrscheinlich faul. Für mich fühlt es sich nicht nach Faulheit an. Es fühlt sich an, als wäre mein Körper doppelt so schwer wie sonst, während mein Kopf gleichzeitig viel zu voll ist. Ich bin müde, obwohl ich den ganzen Tag schlafe, aber es ist eine andere Müdigkeit, ich bin Müde von allem.</p>
+
+<p>Ich denke pausenlos. Und gleichzeitig über gar nichts.</p>
+
+<p>Manchmal sitze ich einfach da und starre minutenlang irgendwohin, bis mir auffällt, dass ich keine Ahnung mehr habe, worüber ich gerade nachgedacht habe.</p>
+
+<p>Jannik versucht, mich aus dem Zimmer zu holen.</p>
+
+<p>„Komm, wir gehen kurz raus.“</p>
+
+<p>„Keine Lust.“</p>
+
+<p>„Nur einmal um den Block.“</p>
+
+<p>„Später vielleicht.“</p>
+
+<p>Ich will ihn nicht wegschieben. Ich schäme mich sogar dafür. Es tut mir auch leid. Ich weiß, dass er nur helfen will.</p>
+
+<p>Aber selbst ein Spaziergang um den Block ist gerade keine Kleinigkeit.</p>
+
+<p>Aufstehen. Ins Bad. Haare. Klamotten. Schuhe. Jacke suchen. Tür auf. Draußen Menschen. Vielleicht reden. Zurückkommen.</p>
+
+<p>Es sind Kleinigkeiten. Eigentlich.</p>
+
+<p>Aber gerade fühlt sich jede einzelne davon an wie ein Berg.<br>Ein unüberwindbarer Aufstieg nach dem anderen.</p>
+
+<div class="scenebreak">❧</div>
+
+<p class="daymark">Tag fünf</p>
+
+<p>Ich lasse irgendwann Musik laufen. Nicht bewusst, einfach irgendeine Playlist.</p>
+
+<p>Für ein paar Minuten denke ich an gar nichts.</p>
+
+<p>Dann kommt ein Lied, das wir letzten Sommer ungefähr vierhundertmal gehört haben. Laut, mit offenem Fenster, komplett schief und falsch mitgesungen.</p>
+
+<p>Ich drücke sofort auf weiter.</p>
+
+<p>Ich will diese Erinnerung gerade nicht.</p>
+
+<p>Oder ich will sie zu sehr. Ich weiß es nicht.</p>
+
+<p>Später sitze ich an meinem Computer und öffne mein Projekt.</p>
+
+<p>Es sieht aus wie vor einer Woche. Derselbe Code. Dieselben Dateien. Dieselbe halbfertige Stelle, an der ich aufgehört habe.</p>
+
+<p>Ich lese meinen eigenen Code und denke:</p>
+
+<p><em>Warum habe ich das eigentlich interessant gefunden?</em></p>
+
+<p>Vor einer Woche hätte ich mich darauf gefreut. Vor einer Woche hätte ich bis zwei Uhr nachts daran gesessen.</p>
+
+<p>Jetzt starre ich zehn Minuten auf den Bildschirm und mache ihn wieder aus.</p>
+
+<p>Nicht, weil es schlecht ist.</p>
+
+<p>Nicht, weil ich es nicht mehr kann.</p>
+
+<p>Es ist mir einfach egal.<br>Alles ist mir gerade egal.<br>Alles ist anstrengend und nichts macht mehr Freude oder spaß.</p>
+
+<p>Ich weiß noch wie sich Freude anfühlt, zumindest glaube ich dass ich das noch weiß, aber ich kann keine Freude fühlen.</p>
+
+<p>Und genau das macht mir Angst.</p>
+
+<div class="scenebreak">❧</div>
+
+<p class="daymark">Tag sechs</p>
+
+<p>Ich liege auf dem Sofa, den Kopf auf Janniks Schoß. Seine Hand fährt langsam durch meine Haare. Im Fernseher läuft irgendetwas, das ich nicht mitbekomme.</p>
+
+<p>Ich fühle mich gleichzeitig sicher und komplett kaputt.</p>
+
+<p>Das ist vielleicht das Merkwürdigste daran.</p>
+
+<p>Er ist da. Ich bin nicht allein.</p>
+
+<p>Und trotzdem ist da diese Glasscheibe zwischen mir und dem Rest der Welt.</p>
+
+<p>Ich kann alles sehen. Ich kann hören, was gesagt wird. Ich verstehe es sogar.</p>
+
+<p>Ich komme nur nicht mehr richtig durch.</p>
+
+<div class="scenebreak">❧</div>
+
+<p class="daymark">Tag sieben</p>
+
+<p>Es ist fast schon normal.</p>
+
+<p>Nicht normal im Sinne von gut. Nur vertraut.</p>
+
+<p>Ich wache auf. Bleibe liegen. Schaue aufs Handy. Stehe irgendwann auf. Esse ein bisschen. Lege mich wieder hin.</p>
+
+<p>Am Fenster sehe ich Menschen, die irgendwohin gehen. Sie fahren zur Arbeit. Sie kaufen ein. Sie lachen. Sie leben.</p>
+
+<p>Und ich stehe da und schaue ihnen zu.</p>
+
+<p>Vor einer Woche war ich noch genauso. Ich war ein Teil davon. Ich war in der Schule und habe mich über Lehrer beschwert und programmiert und bin nach Hause gekommen und habe gekocht und auf dem Sofa gelegen und mich auf morgen gefreut.</p>
+
+<p>Jetzt fühlt es sich an, als würde dieses Leben irgendwo hinter mir stattfinden. Als wäre es noch da, aber ich wäre nicht mehr drin.</p>
+
+<p>Ich weiß, dass ich aufstehen könnte. Duschen. Zur Schule gehen. Rausgehen. Lachen. Ich könnte sogar so tun, als wäre alles normal, und wahrscheinlich würde es von außen tatsächlich so aussehen.</p>
+
+<p>Aber innen ist nichts normal.</p>
+
+<p>Innen ist nur dieser eine Platz, der leer bleibt.</p>
+
+<p>Dieser eine Platz, der mich jeden Tag daran erinnert, dass ein Mensch einfach fehlen kann und die Welt trotzdem einfach weiterläuft.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Am Abend liege ich neben Jannik. Er zieht mich zu sich, und ich lege meinen Kopf auf seine Brust.</p>
+
+<p>Morgen ist Donnerstag.</p>
+
+<p>Eigentlich müsste ich wieder zur Schule.</p>
+
+<p>Eigentlich müsste ich langsam weitermachen.</p>
+
+<p>Eigentlich müsste das Leben weitergehen.</p>
+
+<p>Ich weiß nur nicht, wie man weitermacht, wenn ein Teil von einem selbst stehen geblieben ist.<br>Ich weiß garnicht ob ich noch weiß wie man überhaupt lebt?</p>
+
+<p>Ich höre seinen Herzschlag.</p>
+
+<p>Und für ein paar Sekunden fühle ich mich wieder sicher.</p>
+
+<p>Dann denke ich an Nika.</p>
+
+<p>Und alles ist wieder da.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== V ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Fünf</span><h2>Die Dinge, die bleiben</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Die Beerdigung ist</span> an einem Donnerstag.</p>
+
+<p>Es regnet nicht. Ich weiß nicht, warum ich damit gerechnet habe. In Filmen regnet es immer, und irgendwie hatte ich mir eingebildet, dass die Welt wenigstens so viel Anstand hat.</p>
+
+<p>Stattdessen ist es der schönste Tag seit Wochen. Blauer Himmel, keine einzige Wolke, so ein Licht, bei dem alles aussieht, als hätte jemand die Farben hochgedreht. Irgendwo zwitschert ein Vogel, als wäre das hier ein ganz gewöhnlicher Donnerstag.</p>
+
+<p>Ich finde das unverschämt.</p>
+
+<p>Jannik hat sich freigenommen. Er steht neben mir, in einem Hemd, das er sonst nie trägt, und hält meine Hand so fest, dass es fast wehtut, und ich bin froh darüber, weil es das Einzige ist, was ich in diesem Moment wirklich spüre.</p>
+
+<p>Es sind viel zu viele Menschen da.</p>
+
+<p>Das ist das Erste, was mich wütend macht. Leute aus unserer Stufe, die noch nie ein Wort mit ihr gewechselt haben. Zwei Mädchen, die letztes Jahr hinter ihrem Rücken über sie geredet haben. Lehrer. Nachbarn. Irgendwelche Verwandten, deren Namen sie selbst nicht gewusst hätte.</p>
+
+<p>Alle sehen traurig aus.</p>
+
+<p>Und ich stehe da und denke: <em>Ihr kanntet sie doch gar nicht.</em></p>
+
+<p>Ich weiß, dass das unfair ist. Ich weiß, dass die meisten es ernst meinen. Trotzdem will ich sie alle anschreien.</p>
+
+<p>Jemand hält eine Rede. Es geht um einen jungen Menschen, der viel zu früh gegangen ist, um Licht und um Erinnerungen und darum, dass sie jetzt an einem besseren Ort ist.</p>
+
+<p>Ich höre zu und erkenne sie in keinem einzigen Satz.</p>
+
+<p>Niemand sagt, dass sie beim Essen immer die Pommes von anderen Leuten geklaut hat. Niemand sagt, dass sie einmal drei Wochen lang behauptet hat, sie könne mit den Ohren wackeln, und es konnte nie jemand überprüfen. Niemand sagt, dass sie sich Serien immer nur bis Folge vier angeschaut hat und dann behauptet hat, sie kenne die ganze Staffel.</p>
+
+<p>Das war Nika.</p>
+
+<p>Nicht Licht. Nicht Erinnerung. Nicht ein besserer Ort.</p>
+
+<p>Pommes und Ohren und Folge vier.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Und dann passiert etwas, das ich mir nie verziehen habe.</p>
+
+<p>Ich weine nicht.</p>
+
+<p>Den ganzen Tag nicht. Nicht während der Rede, nicht am Grab, nicht danach.</p>
+
+<p>Alle um mich herum weinen, und ich stehe da wie ein Möbelstück und fühle nichts. Nicht Traurigkeit, nicht Wut, nicht Erleichterung. Einfach nichts.</p>
+
+<p>Ich habe mich dafür gehasst.</p>
+
+<p>Ich habe gedacht, dass irgendwas mit mir nicht stimmt. Dass ich sie vielleicht doch nicht so lieb hatte, wie ich immer geglaubt habe. Dass ich kaputt bin.</p>
+
+<p>Viel später hat mir jemand erklärt, dass der Kopf das manchmal macht. Dass er zumacht, wenn zu viel auf einmal kommt. Dass es nichts damit zu tun hat, wie sehr man jemanden geliebt hat.</p>
+
+<p>Ich glaube ihr das inzwischen.</p>
+
+<p>Damals nicht.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Danach stehen alle noch eine Weile herum und reden leise miteinander, und irgendwann kommt Nikas Mutter auf mich zu.</p>
+
+<p>Ich habe Angst vor diesem Moment gehabt, seit ich weiß, dass es ihn geben wird.</p>
+
+<p>Sie sieht furchtbar aus. Nicht traurig. Ausgehöhlt. Als hätte jemand alles aus ihr herausgenommen und die Hülle stehen lassen.</p>
+
+<p>„Luna“, sagt sie.</p>
+
+<p>Ich weiß nicht, was ich sagen soll. Alles, was mir einfällt, ist zu klein.</p>
+
+<p>„Es tut mir so leid“, sage ich.</p>
+
+<p>Sie nickt nur.</p>
+
+<p>Dann hält sie mir eine Tüte hin.</p>
+
+<p>„Das lag bei ihr im Zimmer. Ich glaube, das gehört dir.“</p>
+
+<p>Ich nehme sie und schaue hinein.</p>
+
+<p>Es ist mein Hoodie. Der graue, den ich ihr im Februar geliehen habe, weil sie an dem Tag zu dünn angezogen war, und den ich seitdem ungefähr zwanzigmal zurückverlangt habe, immer halb im Scherz, und den sie mir jedes Mal mit derselben Begründung nicht gegeben hat.</p>
+
+<p><em>Steht mir aber besser.</em></p>
+
+<p>Ich starre in diese Tüte und kann mich nicht bewegen.</p>
+
+<p>„Danke“, sage ich irgendwann.</p>
+
+<p>Nikas Mutter schaut mich an, und für einen Moment liegt etwas in ihrem Gesicht, das ich erst Monate später verstehe. Etwas beinahe Entschuldigendes. Als täte es ihr leid, dass ausgerechnet ich das jetzt tragen muss.</p>
+
+<p>„Sie hat viel von dir erzählt“, sagt sie.</p>
+
+<p>Dann geht sie weiter.</p>
+
+<p>Ich habe sie danach nie wieder gesehen.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Zu Hause ziehe ich den Hoodie an.</p>
+
+<p>Er riecht noch nach ihr. Nach ihrem Deo und nach dem Waschmittel, das sie benutzt haben, und nach etwas Drittem, das ich nicht benennen kann und das einfach Nika ist. Ich drücke den Stoff kurz an mein Gesicht, bevor ich überhaupt merke, dass ich das mache.</p>
+
+<p>Und da kommt es dann doch.</p>
+
+<p>Ich sitze auf dem Badezimmerboden, in meinem eigenen Hoodie, und heule, bis mir schlecht ist.</p>
+
+<p>Jannik setzt sich neben mich, ohne ein Wort. Er fragt nichts. Er sagt nicht, dass alles gut wird. Er sitzt einfach da, mit dem Rücken an der Badewanne seine Arme um mich geschlungen, und wartet, bis ich fertig bin.</p>
+
+<p>Ich habe ihn dafür so geliebt.</p>
+
+<p>Dass er wusste, wann man nichts sagt.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Danach kommen die Wochen.</p>
+
+<p>Und mit den Wochen kommt etwas, das mir vorher niemand gesagt hat: Trauer ist nicht dieses eine große schwarze Ding. Trauer ist eine endlose Reihe von winzigen Momenten, in denen man es noch mal neu erfährt.</p>
+
+<p>Ich greife zum Handy, um ihr etwas zu schicken. Dann fällt es mir wieder ein.</p>
+
+<p>Ich sehe in der Stadt eine Person mit derselben Jacke. Mein Herz macht einen Satz. Dann fällt es mir wieder ein.</p>
+
+<p>Ich denke: <em>Das muss ich Nika erzählen.</em> Dann fällt es mir wieder ein.</p>
+
+<p>Jedes Mal ist es eine kleine Version von diesem Dienstag. Nicht so schlimm. Aber dafür jeden Tag, drei- oder viermal, wochenlang.</p>
+
+<p>Und irgendwann werden es zwei Mal am Tag. Und irgendwann eines.</p>
+
+<p>Und das ist fast noch schlimmer.</p>
+
+<p>Weil ich anfange zu merken, dass ich mich daran gewöhne und es fühlt sich an als würde sie immer weiter aus meinem Leben verschwinden, obwohl sie schon längst tot ist.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich gehe wieder zur Schule. Nicht jeden Tag, aber meistens.</p>
+
+<p>Am Anfang sind alle sehr vorsichtig mit mir. Man merkt, wie Gespräche kurz aussetzen, wenn ich dazukomme. Man merkt, wie Leute überlegen, ob sie mich etwas fragen dürfen.</p>
+
+<p>Nach ungefähr drei Wochen hört das auf.</p>
+
+<p>Nicht, weil sie gemein sind. Sondern weil für alle anderen das Leben weitergegangen ist, und das ist auch völlig in Ordnung, muss es ja auch, und trotzdem tut es weh.</p>
+
+<p>Für die anderen ist Nika etwas Trauriges, das passiert ist.</p>
+
+<p>Für mich ist sie ein Loch in jedem einzelnen Tag.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Im November kommt eine Neue in unsere Klasse.</p>
+
+<p>Sie heißt Melina, sie ist nett, sie kann überhaupt nichts dafür.</p>
+
+<p>Und sie setzt sich auf Nikas Platz.</p>
+
+<p>Niemand hat es ihr gesagt. Warum sollte auch. Es ist ein freier Stuhl in einem Klassenraum, mehr nicht, und irgendwann muss sich da ja jemand hinsetzen.</p>
+
+<p>Ich sitze die ganze Stunde neben ihr und bekomme kein Wort raus.</p>
+
+<p>In der Pause gehe ich aufs Klo und stehe zehn Minuten in einer Kabine und atme.</p>
+
+<p>Es ist so unfassbar unfair, wütend zu sein auf ein Mädchen, das einfach nur einen Sitzplatz gesucht hat und nichtmal von Nika weiß.</p>
+
+<p>Aber ich bin es trotzdem.</p>
+
+<p>Ich glaube, das war der Tag, an dem ich zum ersten Mal wirklich verstanden habe, dass die Welt sich nicht dafür interessiert, dass sie weg ist. Die Welt füllt Lücken auf. Sofort. Ohne zu fragen.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Im Dezember rufe ich ihre Mailbox an.</p>
+
+<p>Das habe ich in den Wochen davor ziemlich oft gemacht. Nicht jeden Tag, aber wenn es schlimm war. Anrufen, dreimal klingeln lassen, dann kommt ihre Stimme, viel zu laut, viel zu fröhlich, und dann lege ich auf.</p>
+
+<p>Es hat geholfen. Auf eine kaputte Art, aber es hat geholfen.</p>
+
+<p>An diesem Abend rufe ich an, und es klingelt nicht.</p>
+
+<p>Stattdessen sagt eine Computerstimme, dass kein Anschluss unter dieser Nummer existiert.</p>
+
+<p>Ich probiere es noch mal. Ich denke, ich habe mich vertippt.</p>
+
+<p>Kein Anschluss unter dieser Nummer.</p>
+
+<p>Ich sitze auf meinem Bett und starre auf mein Handy, und irgendwo in einem Büro hat jemand einen Vertrag gekündigt, weil man das eben so macht, wenn jemand stirbt, und damit ist ihre Stimme aus der Welt verschwunden.</p>
+
+<p>Ich habe an diesem Abend geheult wie am ersten Tag.</p>
+
+<p>Es gibt so viele Arten, jemanden zu verlieren. Das wusste ich vorher nicht. Man verliert sie einmal, und dann noch mal, und dann noch mal, in immer kleineren Stücken.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Trotzdem wird es langsam besser.</p>
+
+<p>Ich sage das ungern, weil es sich anfühlt wie Verrat. Aber es stimmt.</p>
+
+<p>Irgendwann im Januar mache ich zum ersten Mal wieder meinen Computer an und arbeite an meinem Projekt. Nicht lange. Vielleicht vierzig Minuten. Aber es sind vierzig Minuten, in denen mein Kopf einfach nur ein Problem lösen will.</p>
+
+<p>Irgendwann esse ich wieder normal.</p>
+
+<p>Irgendwann schlafe ich wieder durch.</p>
+
+<p>Und dann kommt dieser eine Abend im Februar, an dem Jannik und ich zusammen kochen, und er erzählt irgendeine Geschichte von seiner Arbeit, und ich lache.</p>
+
+<p>Richtig. Laut. Aus dem Bauch.</p>
+
+<p>Und mitten im Lachen erwische ich mich selbst dabei und höre auf.</p>
+
+<p>Jannik merkt es sofort.</p>
+
+<p>„Hey. Was ist?“</p>
+
+<p>„Nichts.“</p>
+
+<p>„Luna.“</p>
+
+<p>Ich schaue auf das Schneidebrett.</p>
+
+<p>„Ich hab gerade gelacht.“</p>
+
+<p>„Ja“, sagt er vorsichtig. „Das darfst du.“</p>
+
+<p>„Sie ist tot und ich stehe hier und lache.“</p>
+
+<p>Er legt das Messer weg und dreht mich zu sich.</p>
+
+<p>„Luna. Nika hätte dich ausgelacht dafür, dass du nicht lachst.“</p>
+
+<p>Und das Verrückte ist ja, er hat recht. Sie hätte mich fertiggemacht. Sie hätte gesagt, ich soll mich nicht so anstellen, und wäre dabei selbst rot geworden.</p>
+
+<p>„Trotzdem fühlt es sich falsch an“, sage ich.</p>
+
+<p>„Ich weiß.“ Er zieht mich an sich. „Es fühlt sich noch eine ganze Weile falsch an. Und irgendwann nicht mehr. Und das ist kein Verrat, das ist einfach, wie es geht.“</p>
+
+<p>Ich habe damals nicht darüber nachgedacht, woher er das so genau wusste.</p>
+
+<p>Ich habe einfach nur genickt und mich an ihn gelehnt und weitergeschnitten.</p>
+
+<p>Ich habe an diesem Abend nichts gefragt.</p>
+
+<p>Kein einziges Mal.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== VI ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Sechs</span><h2>Was ich nicht gesehen habe</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Es fängt im Januar an</span>, glaube ich. So genau weiß ich es nicht mehr. Nur dass es irgendwann kalt wird und die Kaffeemaschine morgens läuft, aber niemand mehr am Herd steht.</p>
+
+<p>Ich komme in die Küche, und da ist kein Rührei, kein Müsli, kein Latte Macchiato. Nur die Maschine, die er trotzdem anstellt, weil er weiß, dass ich ohne Kaffee nicht funktioniere.</p>
+
+<p>„Hab verschlafen“, sagt er, als er ein paar Minuten später aus dem Bad kommt, die Haare noch nass.</p>
+
+<p>„Kein Ding.“</p>
+
+<p>Am nächsten Tag ist es wieder so. Und am Tag danach auch.</p>
+
+<p>Nach zwei Wochen frühstücken wir morgens einfach nicht mehr zusammen, und niemand entscheidet je, dass das so sein soll. Es passiert einfach, so leise, dass ich es kaum bemerke.</p>
+
+<p>„Er arbeitet zu viel“, denke ich mir.</p>
+
+<p>Das ist meine Erklärung für alles in diesem Winter. <em>Er arbeitet zu viel.</em></p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ein paar Wochen später wache ich nachts auf, weil das Bett neben mir leer ist.</p>
+
+<p>Ich gehe raus. Er sitzt am Küchentisch. Kein Licht an. Kein Handy. Kein Fernseher. Er sitzt einfach da, in der Dunkelheit, und schaut auf die Tischplatte. Die Straßenlaterne draußen wirft ein bisschen Licht durchs Fenster, gerade genug, um seine Umrisse zu erkennen.</p>
+
+<p>„Jannik?“</p>
+
+<p>Er zuckt zusammen, als hätte ich ihn bei etwas erwischt.</p>
+
+<p>„Hey. Hab dich nicht gehört.“</p>
+
+<p>„Was machst du?“</p>
+
+<p>„Konnte nicht schlafen.“ Er lächelt, kaum zu sehen im Dunkeln. „Komm, geh wieder ins Bett, du hast morgen Schule.“</p>
+
+<p>„Kommst du mit?“</p>
+
+<p>„Gleich.“</p>
+
+<p>Ich gehe wieder ins Bett.</p>
+
+<p>In den Wochen danach sehe ich ihn noch drei- oder viermal so sitzen, immer ungefähr zur gleichen Zeit, immer dieselbe Antwort. <em>Konnte nicht schlafen.</em> Und jedes Mal gehe ich zurück ins Bett und lasse ihn dort sitzen.</p>
+
+<p>Das ist das, was ich mir am längsten vorwerfe. Nicht, dass ich es nicht bemerke. Sondern dass ich es bemerke und trotzdem wieder ins Bett gehe.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Im Februar räumt er an einem Samstag den ganzen Keller auf. Komplett, allein, ohne dass ich ihn darum gebeten hätte.</p>
+
+<p>Ich gehe runter, um zu fragen, ob er Hilfe will, und finde ihn zwischen aufgerissenen Kisten, einen Müllsack in der einen Hand, einen Ordner in der anderen.</p>
+
+<p>„Was machst du da?“</p>
+
+<p>„Muss ja irgendwann mal jemand machen.“</p>
+
+<p>Er verschenkt seine Gitarre an einen Kollegen. Er spielt sie sowieso nie, sagt er. Ein paar Tage später sitzt er mit seinem Laptop am Küchentisch, benennt Ordner um, sortiert Dateien und legt am Ende eine Liste mit Passwörtern in einen Ordner, den er mir zeigt.</p>
+
+<p>„Falls du mal irgendwas brauchst.“</p>
+
+<p>„Warum sollte ich an deinen Laptop müssen?“</p>
+
+<p>„Weiß man nie.“</p>
+
+<p>Ich lache und sage, er sei ein Opa, der sein Testament macht. Er lacht mit, ein bisschen zu laut für den Witz.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Über die Wochen kommen Sätze dazu. Einzeln, immer beiläufig, immer zwischen zwei anderen Dingen, sodass ich sie erst viel später als das erkenne, was sie sind.</p>
+
+<p>Beim Abwaschen, ohne mich anzusehen: „Du kommst eigentlich ganz gut klar inzwischen, oder?“</p>
+
+<p>Im Auto, an einer roten Ampel: „Du bist viel stärker, als du glaubst. Das weißt du, oder?“</p>
+
+<p>Abends im Bett, in die Dunkelheit hinein: „Versprich mir, dass du studierst. Egal was.“</p>
+
+<p>„Wieso sagst du das jetzt?“</p>
+
+<p>„Sag einfach ja.“</p>
+
+<p>„Ja. Is okay, ich studiere.“</p>
+
+<p>Und einmal, mitten in einem völlig belanglosen Gespräch über Nudelsorten: „Ich bin echt froh, dass es dich gibt.“</p>
+
+<p>„Ich dich auch, haha“, sage ich und werfe ihm ein Stück Zwiebel zu, weil mir in dem Moment nichts anderes einfällt.</p>
+
+<p>Das ist meine Antwort. <em>Ich dich auch</em></p>
+
+<div class="scenebreak">❧</div>
+
+<p>Und er entschuldigt sich. Ständig, für alles.</p>
+
+<p>Dafür, dass die Spülmaschine nicht ausgeräumt ist. Dafür, dass er zu spät ist. Dafür, dass er müde ist. Dafür, dass er am Wochenende nichts unternehmen will.</p>
+
+<p>„Sorry.“</p>
+
+<p>„Wofür denn jetzt schon wieder?“</p>
+
+<p>„Weiß nicht. Einfach so.“</p>
+
+<p>An einem Sonntag, als wir den ganzen Tag nur auf dem Sofa liegen, sagt er plötzlich: „Tut mir leid, dass ich gerade so anstrengend bin.“</p>
+
+<p>„Du bist nicht anstrengend.“</p>
+
+<p>„Doch.“</p>
+
+<p>„Jannik. Du bist nicht anstrengend.“</p>
+
+<p>Er schaut mich an, ein bisschen zu lang, und sagt dann nur: „Okay.“</p>
+
+<p>Dann wechselt er das Thema, und ich lasse ihn. Ich lasse ihn immer.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Anfang März sitzen wir auf dem Bett, irgendein Film läuft, den keiner von uns wirklich schaut.</p>
+
+<p>„Luna?“</p>
+
+<p>„Mhm?“</p>
+
+<p>„Darf ich dich was fragen?“</p>
+
+<p>Ich schaue nicht mal auf. „Klar.“</p>
+
+<p>Er sagt nichts.</p>
+
+<p>Fünf Sekunden. Zehn.</p>
+
+<p>Ich drehe mich zu ihm. „Was denn?“</p>
+
+<p>Sein Gesicht macht diese kleine Bewegung, die ich nicht einordnen kann. Als würde er innerlich gegen etwas ankämpfen und dann verlieren.</p>
+
+<p>„Vergiss es“, sagt er. „War Quatsch.“</p>
+
+<p>„Jetzt sag doch.“</p>
+
+<p>„Nee, wirklich. War nichts.“ Er grinst, viel zu schnell, viel zu leicht. „Wolltest du morgen was essen oder gehen wir raus?“</p>
+
+<p>Diese fünf Sekunden.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Es fühlt sich in diesem Moment nach überhaupt nichts Ernstem an. Nicht wie etwas, bei dem man eingreifen müsste. Nicht wie ein Alarmsignal.</p>
+
+<p>Es fühlt sich einfach an wie: Er ist müde. Er hat viel zu tun. Er schläft schlecht. Er ist halt gerade so drauf.</p>
+
+<p>Und dazu kommt etwas, das ich mir lange nicht eingestehen will. Ich bin in diesem Winter selbst noch nicht wieder ganz da, seit Nika. Und Jannik ist der Mensch, der mich trägt. Er ist das Feste. Er ist der, dem es gut geht, damit es mir wieder gut gehen kann.</p>
+
+<p>Ich glaube, ich brauche ihn, und deshalb schaue ich ihn nicht richtig an.</p>
+
+<p>Und ich glaube, er weiß das. Ich glaube, er sagt mir deshalb nichts.</p>
+
+<p>Das ist der Gedanke, der mich am meisten kaputt macht: dass er schweigt, weil er denkt, ich hätte gerade genug.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Der letzte normale Abend ist ein Montag.</p>
+
+<p>Nichts Besonderes passiert. Wir bestellen was, weil keiner Lust auf Kochen hat. Er isst kaum, was mir auffällt und was ich nicht anspreche. Wir schauen zwei Folgen von irgendetwas.</p>
+
+<p>Später, im Bett, legt er seinen Arm um mich wie immer.</p>
+
+<p>Nur dass er ihn diesmal nicht wieder wegnimmt.</p>
+
+<p>Normalerweise dreht er sich irgendwann um, weil sein Arm einschläft. An diesem Abend bleibt er einfach so liegen, viel länger als sonst, und irgendwann sagt er in meine Haare hinein:</p>
+
+<p>„Danke.“</p>
+
+<p>„Wofür?“</p>
+
+<p>„Einfach so.“</p>
+
+<p>„Du bist komisch“, sage ich und kuschle mich enger an ihn.</p>
+
+<p>Es ist der letzte Satz, den ich sage, bevor ich neben ihm einschlafe.</p>
+
+<p>Am nächsten Tag ist Dienstag.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== VII ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Sieben</span><h2>Hab dich lieb</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Dienstag fühlt sich falsch an</span>, und ich weiß den ganzen Tag nicht, warum.</p>
+
+<p>Nicht offensichtlich falsch. Nur falsch. So wie ein Raum, in dem jemand ein Möbelstück zehn Zentimeter verschoben hat, und man merkt es, ohne es zu finden. Ich kann es nicht greifen, aber es sitzt den ganzen Vormittag mit am Tisch.</p>
+
+<p>Er ist vor mir wach. Als ich in die Küche komme, steht er am Fenster, so wie damals, und dreht sich erst um, als ich schon fast neben ihm stehe.</p>
+
+<p>„Morgen, Prinzessin.“</p>
+
+<p>„Morgen.“</p>
+
+<p>„Wie geht's dir?“</p>
+
+<p>Ich zucke mit den Schultern. „Geht.“</p>
+
+<p>Er nickt.</p>
+
+<p>Wir reden kaum. Ich denke mir nichts dabei, weil wir seit Wochen morgens kaum reden.</p>
+
+<p>Später gehe ich in mein Zimmer und setze mich an den Computer, aber ich mache eigentlich nichts. Ich öffne ein Programm, schließe es wieder, lege mich aufs Bett.</p>
+
+<p>Irgendwann höre ich Schritte im Flur.</p>
+
+<p>Die Tür geht auf. Er schaut kurz rein.</p>
+
+<p>„Ich geh später noch kurz was erledigen.“</p>
+
+<p>„Okay.“</p>
+
+<p>„Ich bin danach wieder da.“</p>
+
+<p>Ich nicke.</p>
+
+<p>„Hab dich lieb.“</p>
+
+<p>„Ich dich auch.“</p>
+
+<p>Er bleibt eine Sekunde länger in der Tür stehen als nötig.</p>
+
+<p>Dann macht er sie zu.</p>
+
+<p>Das ist das Letzte, was ich von ihm gesehen habe. Ein halber Körper in einem Türrahmen und ein Satz, den wir uns tausendmal gesagt haben.</p>
+
+<p>Ich habe nicht aufgeschaut.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich weiß noch genau, dass ich danach auf mein Handy geschaut habe.</p>
+
+<p>11:26 Uhr.</p>
+
+<p>Ich erinnere mich daran, weil ich an diesem Tag ständig auf die Uhr geschaut habe. Ich weiß bis heute nicht, warum. Vielleicht, weil ich auf irgendetwas gewartet habe.</p>
+
+<p>Vielleicht nur darauf, dass der Tag endlich vorbeigeht.</p>
+
+<p>Der Nachmittag zieht sich. Draußen wird es früh dunkel, so wie im Herbst eben.</p>
+
+<p>Ich esse nichts. Ich trinke meinen Kaffee kalt. Ich liege auf dem Bett und höre Musik, ohne zuzuhören.</p>
+
+<p>17:03 Uhr.</p>
+
+<p>Ich schaue aus dem Fenster.</p>
+
+<p>17:41 Uhr.</p>
+
+<p>Ich schaue wieder aufs Handy.</p>
+
+<p>18:12 Uhr.</p>
+
+<p>Er ist noch nicht zurück.</p>
+
+<p>Komisch. Aber ich denke mir nichts dabei. Er hat manchmal länger zu tun.</p>
+
+<p>19:04 Uhr.</p>
+
+<p>Ich stehe auf, gehe in die Küche, überlege, ob ich etwas koche.</p>
+
+<p>Dann entscheide ich mich dagegen.</p>
+
+<p>20:17 Uhr.</p>
+
+<p>Ich schreibe ihm.</p>
+
+<p><em>Wann kommst duuuuu? Ich vermisse diiich.</em></p>
+
+<p>Keine Antwort.</p>
+
+<p>Ich warte ein paar Minuten. Dann noch ein paar.</p>
+
+<p>Ich schreibe noch einmal.</p>
+
+<p><em>Alles okay?</em></p>
+
+<p>Nichts.</p>
+
+<p>Ich rufe an. Keine Antwort. Noch einmal. Wieder nichts.</p>
+
+<p>Jetzt wird mir langsam unwohl.</p>
+
+<p>Ich rede mir ein, dass er beschäftigt ist. Dass er das Handy irgendwo liegen gelassen hat. Dass der Akku leer ist.</p>
+
+<p>Vielleicht.</p>
+
+<p>Ich weiß es selbst nicht.</p>
+
+<p>Ich gehe zurück in mein Zimmer und versuche, mich abzulenken.</p>
+
+<p>Es funktioniert nicht.</p>
+
+<p>21:46 Uhr.</p>
+
+<p>Immer noch nichts.</p>
+
+<p>Ich rufe noch einmal an. Diesmal klingelt es nicht mal mehr. Nur die Mailbox.</p>
+
+<p>Ich lege auf.</p>
+
+<p>Und irgendetwas in mir fängt an zu kippen. Nicht plötzlich. Eher so, als würde jemand ein Glas ganz langsam vollgießen, bis nur noch ein Tropfen fehlt.</p>
+
+<p>Ich weiß nicht, wo er ist.</p>
+
+<p>Ich weiß nicht, warum er nicht antwortet.</p>
+
+<p>Und ich habe Angst.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Irgendwann höre ich draußen Stimmen.</p>
+
+<p>Zuerst denke ich mir nichts dabei.</p>
+
+<p>Dann höre ich mehrere Autos. Türen. Schnelle Schritte. Jemand spricht.</p>
+
+<p>Ich setze mich auf.</p>
+
+<p>Ich gehe zum Fenster.</p>
+
+<p>Unten stehen Einsatzfahrzeuge. Blaues Licht läuft über die Hauswände gegenüber, immer wieder, in diesem gleichmäßigen Takt, den man nie wieder vergisst, wenn man ihn einmal für sich selbst gesehen hat. Ein paar Nachbarn stehen schon in ihren Türen und flüstern miteinander.</p>
+
+<p>Für einen Moment verstehe ich überhaupt nicht, was ich da sehe.</p>
+
+<p>Dann klopft es an der Haustür.</p>
+
+<p>Hart. Mehrmals.</p>
+
+<p>Mein Körper ist schneller als mein Kopf. Ich bin im Flur, bevor ich entschieden habe, dass ich aufstehe.</p>
+
+<p>Noch ein Klopfen.</p>
+
+<p>Dann eine Stimme.</p>
+
+<p>„Polizei.“</p>
+
+<p>Ich bleibe stehen.</p>
+
+<p>Alles in mir wird kalt.</p>
+
+<p>Ich gehe zur Tür.</p>
+
+<p>„Was ist passiert?“</p>
+
+<p>Keine Antwort.</p>
+
+<p>Ich öffne.</p>
+
+<p>Mehrere Menschen stehen vor mir. Polizisten. Dahinter jemand vom Rettungsdienst.</p>
+
+<p>Ich sehe ihre Gesichter.</p>
+
+<p>Keiner lächelt. Keiner sagt sofort etwas.</p>
+
+<p>„Sind Sie Luna Pawalski?“</p>
+
+<p>Ich nicke.</p>
+
+<p>„Kennen Sie Jannik Schleßwig?“</p>
+
+<p>„Jannik ist mein … mein Freund“, stammle ich. „Fester Freund.“</p>
+
+<p>Ich starre den Mann an.</p>
+
+<p>Er sieht kurz zu seinen Kollegen. Dann wieder zu mir.</p>
+
+<p>„Es tut mir leid.“</p>
+
+<p>Eine Pause, in der die ganze Welt stehen bleibt.</p>
+
+<p>„Wir haben Ihren Freund heute Abend gefunden.“</p>
+
+<p>„Und?“</p>
+
+<p>Stille.</p>
+
+<p>Mein Herz rast so laut, dass ich es in den Ohren höre.</p>
+
+<p>„Was ist?“</p>
+
+<p>Er holt tief Luft.</p>
+
+<p>„Er ist verstorben.“</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich höre das Wort.</p>
+
+<p><em>Verstorben.</em></p>
+
+<p>So ein sauberes Wort. So ein aufgeräumtes, höfliches Wort für etwas, das sich anfühlt, als würde mir jemand den Boden unter den Füßen wegziehen.</p>
+
+<p>Ich sage nichts.</p>
+
+<p>Ich kann nichts sagen.</p>
+
+<p>Ich starre ihn einfach an und warte darauf, dass er es zurücknimmt.</p>
+
+<p>Dann geben meine Beine nach. Zwei Sanitäter sind sofort da und halten mich fest.</p>
+
+<p>„Nein.“</p>
+
+<p>Es kommt automatisch.</p>
+
+<p>„Nein.“</p>
+
+<p>Der Polizist sagt etwas, aber ich verstehe kein einziges Wort mehr.</p>
+
+<p>Alles wird leiser. Ich sehe nur noch blaues und rotes Licht, alles verschwimmt, als wäre ich plötzlich unter Wasser. Ich sehe Menschen vor mir, aber ihre Stimmen kommen nur noch gedämpft an.</p>
+
+<p>Jemand berührt meinen Arm.</p>
+
+<p>Ich reiße ihn weg.</p>
+
+<p>„Nein. Nein, nein, nein.“</p>
+
+<p>Ich drehe mich um.</p>
+
+<p>Ich will einfach zurück in die Wohnung.</p>
+
+<p>Da ist doch sein Zeug.</p>
+
+<p>Seine Schuhe stehen im Flur. Seine Jacke hängt am Haken. Seine Tasse. Sein Laptop.</p>
+
+<p>Alles ist da.</p>
+
+<p>Wie kann ein Mensch tot sein, wenn seine Schuhe noch im Flur stehen?</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich gehe ein paar Schritte in die Wohnung.</p>
+
+<p>„Luna.“</p>
+
+<p>Ich höre meinen Namen. Ich reagiere nicht.</p>
+
+<p>Ich sehe nur unsere Küche. Den Tisch. Die zwei Stühle.</p>
+
+<p>Seine Tasse steht noch da.</p>
+
+<p>Ich starre sie an.</p>
+
+<p>Vor zwölf Stunden hat er daraus getrunken.</p>
+
+<p>Vor zwölf Stunden war er hier.</p>
+
+<p>Vor zwölf Stunden hat er mich Prinzessin genannt und ich habe nicht aufgeschaut.</p>
+
+<p>Ich gehe hin. Ich fasse sie an.</p>
+
+<p>Sie ist kalt.</p>
+
+<p>Und da breche ich zusammen.</p>
+
+<p>Nicht laut. Nicht dramatisch. Ich sinke einfach auf den Küchenboden, als hätte mein Körper beschlossen, dass er mich nicht mehr trägt.</p>
+
+<p>Jemand kniet sich neben mich. Ich höre Wörter wie „atmen“ und „ganz ruhig“ und „wir sind da“, aber sie kommen durch Watte.</p>
+
+<p>Ich bekomme keine Luft.</p>
+
+<p>Meine Hände zittern so sehr, dass ich sie nicht stillhalten kann.</p>
+
+<p>Ich versuche, etwas zu sagen. Seinen Namen. Irgendwas.</p>
+
+<p>Meine Stimme funktioniert nicht.</p>
+
+<p>Und dann sehe ich sein Gesicht.</p>
+
+<p>Wie er morgens am Herd steht. Wie er lacht. Wie er den Kopf schief legt, wenn ich Unsinn rede. Wie er in der Tür stand, heute Mittag, eine Sekunde zu lang.</p>
+
+<p>Alles gleichzeitig.</p>
+
+<p>Und darüber, wie ein Lärm, immer nur dieses eine Wort.</p>
+
+<p><em>Tot.</em></p>
+
+<p>Ich schreie irgendwann.</p>
+
+<p>Ich weiß nicht, wie lange. Ich weiß nicht, wer mich festhält.</p>
+
+<p>Ich weiß nur noch, dass plötzlich sehr viele fremde Menschen in unserer Wohnung sind und dass der Ort, den ich seit einem Jahr mein Zuhause nenne, in genau diesem Moment aufhört, einer zu sein.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Irgendwann später fragt mich jemand etwas.</p>
+
+<p>Ich verstehe die Frage nicht beim ersten Mal. Beim zweiten auch nicht.</p>
+
+<p>Es geht darum, ob es Angehörige gibt. Ob jemand kommen kann. Ob es jemanden gibt, zu dem ich heute Nacht kann.</p>
+
+<p>Und da merke ich es zum ersten Mal richtig.</p>
+
+<p>Es gibt niemanden.</p>
+
+<p>Nika ist tot. Jannik ist tot. Meine Mutter und ich haben seit zwei Jahren keinen Kontakt mehr, und das hatte gute Gründe, und keiner davon hat sich geändert.</p>
+
+<p>„Ich hab niemanden“, sage ich.</p>
+
+<p>Es klingt nicht mal traurig. Es klingt wie eine Information.</p>
+
+<p>Die Frau, die neben mir kniet, schaut kurz zur Seite, und ich sehe, dass ihr das etwas ausmacht, und irgendwie ist das der Moment, in dem ich anfange, wieder etwas zu spüren.</p>
+
+<p>Sie sagt, dass ich heute Nacht nicht hierbleiben kann.</p>
+
+<p>Ich verstehe nicht warum.</p>
+
+<p>Ich frage mehrmals: „Warum?“</p>
+
+<p>Sie erklärt es. Wahrscheinlich erklärt sie es sogar gut. Etwas über meine Volljährigkeit, die ich noch nicht habe, über Zuständigkeiten, über eine Einrichtung, über morgen früh.</p>
+
+<p>Ich kann nicht zuhören.</p>
+
+<p>Ich packe irgendwelche Sachen in eine Tasche. Ich weiß bis heute nicht, was.</p>
+
+<p>Ein paar Klamotten. Handy. Ladekabel. Zahnbürste. Den grauen Hoodie.</p>
+
+<p>Ich sehe meinen Computer.</p>
+
+<p>Ich nehme ihn nicht mit.</p>
+
+<p>Ich weiß nicht warum. Vielleicht, weil es sich falsch anfühlt. Vielleicht, weil ich nicht mehr weiß, ob ich jemals wieder daran sitzen werde.</p>
+
+<p>An der Tür drehe ich mich noch einmal um.</p>
+
+<p>Das Wohnzimmer. Das Sofa. Der Tisch. Die Stelle, an der wir gestern noch gelegen haben.</p>
+
+<p>Ich denke:</p>
+
+<p><em>Ich komme zurück.</em></p>
+
+<p>Natürlich komme ich zurück. Das ist doch mein Zuhause.</p>
+
+<p>Ich habe diese Wohnung nie wiedergesehen.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Die Fahrt bekomme ich kaum mit.</p>
+
+<p>Ich sitze hinten und schaue aus dem Fenster. Straßen. Laternen. Häuser. Menschen, die noch draußen sind, weil für sie ein ganz normaler Dienstagabend zu Ende geht.</p>
+
+<p>Alles bewegt sich. Alles ist verschwommen.</p>
+
+<p>Ich habe keinen einzigen Gedanken, den ich zu Ende denken kann. Nur Bilder.</p>
+
+<p>Nika. Jannik. Die Wohnung. Das Blaulicht. Seine Tasse. Sein Gesicht.</p>
+
+<p>Immer wieder.</p>
+
+<p>Und einmal, ganz kurz und ganz kalt, ein Satz, den ich sofort wieder wegschiebe:</p>
+
+<p><em>Er hat mich gefragt, ob er mich was fragen darf.</em></p>
+
+<p>Ich weiß nicht, wann wir ankommen.</p>
+
+<p>Jemand sagt mir, dass wir da sind. Ich steige aus. Vor mir ist ein Gebäude. Ich sehe es an. Mehr nicht.</p>
+
+<p>Jemand zeigt mir ein Zimmer.</p>
+
+<p>Ein Bett. Ein Schrank. Ein Schreibtisch. Ein Fenster.</p>
+
+<p>Ich setze mich auf das Bett.</p>
+
+<p>Jemand fragt, ob ich etwas brauche.</p>
+
+<p>„Nein.“</p>
+
+<p>Die Person geht wieder.</p>
+
+<p>Und dann sitze ich da, in einem Zimmer, das mir nicht gehört, in einer Stadt, in der ich niemanden mehr habe, mit einer Tasche, in der ein Hoodie liegt, der noch nach einem Menschen riecht, der erst seit ein paar Stunden tot ist.</p>
+
+<p>Ich sitze da, bis draußen der Himmel grau wird.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== VIII ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Acht</span><h2>Warum bin ich noch hier?</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Die erste Nacht</span> schlafe ich nicht.</p>
+
+<p>Nicht, weil es laut ist. Es ist sogar zu still. Zu Hause hat immer irgendetwas gebrummt, der Kühlschrank, die Heizung, sein Atem neben mir.</p>
+
+<p>Hier ist nichts.</p>
+
+<p>Ich liege in diesem fremden Bett und versuche, nicht an unsere Wohnung zu denken. Nicht an die Küche, nicht an das Sofa, nicht an seine Tasse, die wahrscheinlich immer noch genau da steht.</p>
+
+<p>Mein Kopf macht natürlich genau das.</p>
+
+<p>Nika. Jannik. Nika. Jannik.</p>
+
+<p>Ich ziehe die Decke über den Kopf, als könnte ich dadurch verschwinden.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Am nächsten Morgen klopft jemand.</p>
+
+<p>„Luna? Aufstehen.“</p>
+
+<p>Ich antworte nicht. Ein paar Sekunden später geht die Tür auf.</p>
+
+<p>„Du musst langsam aufstehen.“</p>
+
+<p>„Ich komm gleich.“</p>
+
+<p>Ich sage es nur, damit die Person wieder geht. Sie geht auch.</p>
+
+<p>Ich bleibe trotzdem liegen. Fünf Minuten. Zehn. Zwanzig.</p>
+
+<p>Irgendwann stehe ich auf, weil ich weiß, dass sonst wieder jemand kommt.</p>
+
+<p>Ich ziehe mich an und gehe in einen großen Raum, in dem Stühle stehen und zwei Sofas und ein Tisch, an dem gefrühstückt wird. Es ist ein Kinderheim. Das hat mir niemand so gesagt, aber ich kann es sehen. Es riecht nach Toastbrot und irgendeinem Reinigungsmittel, das ich nicht kenne.</p>
+
+<p>Menschen sitzen dort. Jemand redet. Jemand lacht.</p>
+
+<p>Ich setze mich an einen freien Platz und starre vor mich hin.</p>
+
+<p>„Frühstück steht da.“</p>
+
+<p>Ich nicke. Ich nehme mir etwas.</p>
+
+<p>Ich esse nichts davon.</p>
+
+<p>„Du musst schon ein bisschen was essen.“</p>
+
+<p>„Ich hab keinen Hunger.“</p>
+
+<p>„Du kannst nicht den ganzen Tag nichts essen.“</p>
+
+<p>Ich sage nichts. Sie geht wieder.</p>
+
+<p>Es ist so eine Kleinigkeit. An einem normalen Tag wäre das überhaupt kein Thema.</p>
+
+<p>Aber gerade ist selbst essen eine Aufgabe für die ich zu müde bin.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Die nächsten Tage verschwimmen ineinander.</p>
+
+<p>Ich weiß irgendwann nicht mehr, welcher Tag ist.</p>
+
+<p>Morgens werde ich geweckt. Dann Frühstück. Dann irgendwelche Gespräche, an denen ich nicht teilnehme. Dann Essen. Dann irgendwann wieder Abend.</p>
+
+<p>Dazwischen sitze ich in meinem Zimmer am Fenster und schaue raus.</p>
+
+<p>Menschen gehen vorbei. Autos fahren. Jemand führt einen Hund aus. Ein Kind läuft neben seiner Mutter her und redet ununterbrochen.</p>
+
+<p>Alles bewegt sich. Alles lebt.</p>
+
+<p>Und ich sitze da und habe das Gefühl, das alles durch eine Scheibe zu beobachten, an der ich von außen stehe.</p>
+
+<p>Manchmal fragt mich jemand, warum ich nicht mitmache. Warum ich nicht rausgehe. Warum ich nicht rede.</p>
+
+<p>Ich habe keine Antwort, die sie verstehen würden.</p>
+
+<p>Ich könnte sagen: <em>Weil ich keine Kraft habe. Weil ich keinen Grund sehe. Weil alles zu weit weg ist.</em></p>
+
+<p>Aber das klingt falsch, wenn man es laut sagt.</p>
+
+<p>Also sage ich:</p>
+
+<p>„Bin einfach müde.“</p>
+
+<p>Ich habe damals nicht gemerkt, dass ich denselben Satz benutzt habe wie er.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Am fünften Tag frage ich.</p>
+
+<p>Es ist eine Betreuerin, die mit mir am Tisch sitzt, weil sie das offenbar so machen, wenn jemand nicht isst. Sie heißt Frau Brandt und redet nicht viel, was ich an ihr mag.</p>
+
+<p>„Kann ich Sie was fragen?“</p>
+
+<p>„Klar.“</p>
+
+<p>Ich schaue auf den Tisch.</p>
+
+<p>„Es war kein Unfall. Oder?“</p>
+
+<p>Sie sagt nicht sofort etwas.</p>
+
+<p>Ich schaue auf.</p>
+
+<p>„Sagen Sie's mir einfach.“</p>
+
+<p>Sie sieht mich an. Ich sehe, wie sie kurz abwägt, ob sie das darf, und dann entscheidet, dass Lügen schlimmer wäre.</p>
+
+<p>„Nein“, sagt sie. „Es war kein Unfall.“</p>
+
+<p>Ich nicke.</p>
+
+<p>Ich weiß es doch schon. Ich weiß es, seit ich im Auto saß und diesen Satz weggeschoben habe.</p>
+
+<p>Trotzdem ist es etwas anderes, wenn es jemand ausspricht.</p>
+
+<p>„Hat er …“ Ich muss zweimal anfangen. „Hat er irgendwas hinterlassen?“</p>
+
+<p>„Das weiß ich nicht, Luna. Das darf ich dir auch nicht sagen, selbst wenn ich es wüsste.“</p>
+
+<p>„Okay.“</p>
+
+<p>Ich stehe auf und gehe in mein Zimmer und mache die Tür zu.</p>
+
+<p>Und dann bin ich wütend.</p>
+
+<p>So wütend, wie ich es noch nie in meinem Leben war.</p>
+
+<p>Auf ihn. Nur auf ihn.</p>
+
+<p>Weil er es gewusst hat. Weil er wochenlang neben mir gelegen hat und es gewusst hat. Weil er seinen verdammten Keller aufgeräumt und seine Gitarre verschenkt und mir seine Passwörter gezeigt hat und mir dabei ins Gesicht gelacht hat.</p>
+
+<p>Weil er mich gefragt hat, ob er mich etwas fragen darf.</p>
+
+<p>Und weil ich <em>klar</em> gesagt habe und nicht aufgeschaut habe.</p>
+
+<p>Und dann kippt die Wut, so schnell, dass mir schwindelig wird, und darunter ist nur noch das hier:</p>
+
+<p><em>Ich hätte es sehen müssen.</em></p>
+
+<p>Ich habe monatelang neben diesem Menschen gelebt. Ich habe gesehen, wie er um drei Uhr nachts im Dunkeln in der Küche saß, und bin wieder ins Bett gegangen.</p>
+
+<p>Was für ein Mensch macht das.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Am sechsten Tag bekomme ich mein Handy für eine halbe Stunde.</p>
+
+<p>Ich setze mich aufs Bett und öffne die Chats.</p>
+
+<p>Nika.</p>
+
+<p>Jannik.</p>
+
+<p>Zwei Namen untereinander.</p>
+
+<p>Ich höre eine alte Sprachnachricht von Nika. Ihre Stimme, ganz normal, mitten in einem Satz, lebendig. Für vier Sekunden ist sie wieder da.</p>
+
+<p>Dann endet sie.</p>
+
+<p>Ich drücke auf Wiederholen.</p>
+
+<p>Dann öffne ich Janniks Chat.</p>
+
+<p>Seine letzte Nachricht ist vollkommen unspektakulär. Irgendwas über Essen. Irgendwas über später.</p>
+
+<p>Ich scrolle hoch und lese die Sätze aus dem Winter noch einmal, und jetzt lese ich sie anders.</p>
+
+<p><em>Du kommst eigentlich ganz gut klar inzwischen, oder?</em></p>
+
+<p><em>Versprich mir, dass du studierst.</em></p>
+
+<p><em>Ich bin echt froh, dass es dich gibt.</em></p>
+
+<p>Sie standen die ganze Zeit da.</p>
+
+<p>Ich frage mich, wie zwei Menschen gleichzeitig in einem Leben fehlen können. Wie ein Mensch das aushalten soll.</p>
+
+<p>Ich weiß es nicht.</p>
+
+<p>Ich weiß nur, dass ich es gerade nicht aushalte.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>In den Nächten danach liege ich lange wach.</p>
+
+<p>Ich denke an die Wohnung. An unsere Küche. An seinen Arm um mich. An seinen Geruch. An seine Stimme.</p>
+
+<p>An Nika. An die Schule. An den Platz neben mir.</p>
+
+<p>Und irgendwann fühlt sich mein ganzes früheres Leben an wie etwas, das jemand anderem gehört hat. Ein Leben, das ich mal gekannt habe. Aber nicht mehr habe.</p>
+
+<p>Ich bin sechzehn Jahre alt und habe das Gefühl, dass alles Wichtige bereits vorbei ist.</p>
+
+<p>Dieser Gedanke macht mir Angst.</p>
+
+<p>Und gleichzeitig ist da etwas darunter, das sich fast beruhigend anfühlt, und genau das ist das Gefährliche daran.</p>
+
+<p>Weil ich einfach nicht mehr kämpfen möchte.</p>
+
+<p>Nicht gegen den Tag. Nicht gegen die Erinnerungen. Nicht gegen diese Leere.</p>
+
+<p>Nicht gegen mich selbst.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>An einem Morgen bin ich einfach nur noch müde.</p>
+
+<p>Nicht körperlich. Es ist etwas anderes. Es ist diese tiefe Müdigkeit, bei der man nicht mehr darüber nachdenken will, wie der nächste Tag aussehen soll.</p>
+
+<p>Ich will niemanden sehen. Niemanden hören. Niemanden enttäuschen.</p>
+
+<p>Ich will einfach nur Ruhe. Ich will nicht mehr stark sein müssen. Ich kann nicht mehr.</p>
+
+<p>Ich treffe eine Entscheidung, die ich später selbst kaum in Worte fassen kann.</p>
+
+<p>Ich sage niemandem Bescheid.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Irgendwann wird bemerkt, dass etwas nicht stimmt.</p>
+
+<p>Ich bekomme das meiste nicht mehr mit.</p>
+
+<p>Ich weiß noch, dass plötzlich Menschen in meinem Zimmer sind. Stimmen. Hektik. Jemand ruft meinen Namen. Jemand sagt, dass ich wach bleiben soll. Jemand redet ruhig auf mich ein, immer weiter, obwohl ich nicht antworte.</p>
+
+<p>Ich möchte einfach nur die Augen zumachen.</p>
+
+<p>Jemand lässt mich nicht.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich wache auf und weiß zuerst nicht, wo ich bin.</p>
+
+<p>Alles ist weiß. Wände, Decke, Bettwäsche. Das Licht ist viel zu hell, und irgendwo piept etwas in einem gleichmäßigen Abstand. Es riecht nach Desinfektionsmittel, so stark, dass es fast in der Nase brennt.</p>
+
+<p>Ich drehe den Kopf zur Seite.</p>
+
+<p>Da sitzt jemand.</p>
+
+<p>„Luna?“</p>
+
+<p>Ich sage nichts.</p>
+
+<p>„Du bist im Krankenhaus.“</p>
+
+<p>Ich starre an die Decke.</p>
+
+<p>„Warum?“</p>
+
+<p>Die Person versteht die Frage nicht sofort.</p>
+
+<p>„Was meinst du?“</p>
+
+<p>Ich schlucke. Mein Hals tut weh.</p>
+
+<p>„Warum bin ich noch hier?“</p>
+
+<p>Stille.</p>
+
+<p>„Weil sie dich rechtzeitig gefunden haben.“</p>
+
+<p>Ich drehe den Kopf zum Fenster.</p>
+
+<p>Draußen ist alles hell. Menschen laufen über einen Parkplatz. Autos fahren. Irgendwo lädt jemand einen Kofferraum aus.</p>
+
+<p>Ein ganz normaler Tag.</p>
+
+<p>Ich hätte nie gedacht, dass es mich einmal so wütend machen würde, dass die Welt einfach weiterläuft.</p>
+
+<p>Aber gerade wünsche ich mir, dass sie für einen einzigen Moment stehen bleibt.</p>
+
+<p>Nur einen Moment.</p>
+
+<p>Damit irgendjemand merkt, dass hier etwas fehlt.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>In der zweiten Nacht im Krankenhaus kommt eine Nachtschwester.</p>
+
+<p>Sie heißt Frau Yilmaz, sie ist vielleicht fünfzig, und sie kommt rein, um irgendetwas an dem Gerät neben mir abzulesen.</p>
+
+<p>Dann setzt sie sich einfach hin.</p>
+
+<p>Sie fragt nicht, wie es mir geht. Sie sagt nicht, dass ich noch mein ganzes Leben vor mir habe. Sie sagt nicht, dass andere Menschen es noch schwerer haben.</p>
+
+<p>Sie sitzt einfach da.</p>
+
+<p>Nach einer Weile sage ich: „Ich hab niemanden mehr.“</p>
+
+<p>Sie nickt. „Das hab ich gelesen.“</p>
+
+<p>„Alle sagen, es wird besser.“</p>
+
+<p>„Mhm.“</p>
+
+<p>„Das ist gelogen.“</p>
+
+<p>Sie denkt kurz nach.</p>
+
+<p>„Ich sag dir was anderes“, sagt sie dann. „Ich weiß nicht, ob es besser wird. Das kann ich dir ehrlich nicht versprechen. Aber ich weiß, dass es sich ändert. Es bleibt nicht so, wie es heute ist. Nichts bleibt so.“</p>
+
+<p>Ich schaue sie an.</p>
+
+<p>„Und wenn es sich zum Schlechteren ändert?“</p>
+
+<p>„Dann ändert es sich danach wieder.“</p>
+
+<p>Ich habe darauf nichts geantwortet.</p>
+
+<p>Aber ich habe diesen Satz behalten. Ich habe ihn monatelang mit mir herumgetragen, und an manchen Tagen war er das Einzige, was ich hatte.</p>
+
+<p><em>Es bleibt nicht so, wie es heute ist.</em></p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ein paar Tage später muss ich zurück.</p>
+
+<p>Als das Auto vor dem Gebäude hält, will ich nicht aussteigen.</p>
+
+<p>Das Haus sieht genauso aus wie vorher. Als wäre nichts passiert. Als hätte es diese Nacht nie gegeben.</p>
+
+<p>Ich steige aus. Ich gehe hinein.</p>
+
+<p>Wieder dieser Flur. Wieder diese Türen. Wieder mein Zimmer. Wieder dieses Bett.</p>
+
+<p>Ich setze mich darauf.</p>
+
+<p>Jemand fragt: „Wie geht es dir?“</p>
+
+<p>Ich schaue auf meine Hände.</p>
+
+<p>„Keine Ahnung.“</p>
+
+<p>Die Person setzt sich neben mich. „Du kannst mit uns reden.“</p>
+
+<p>Ich sage nichts. Nach einer Weile steht sie wieder auf und geht.</p>
+
+<p>Ich bleibe allein zurück.</p>
+
+<p>Ich nehme mein Handy und öffne die Chats.</p>
+
+<p>Nika. Jannik.</p>
+
+<p>Zwei Namen. Zwei Menschen. Zwei Chats, in denen nie wieder jemand antworten wird.</p>
+
+<p>Ich lege das Handy neben mich, ziehe die Knie an und lege den Kopf darauf.</p>
+
+<p>Und zum ersten Mal frage ich mich nicht mehr nur, warum ich noch lebe.</p>
+
+<p>Ich frage mich, ob ich überhaupt noch weiß, <em>wie</em> das geht.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== IX ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Neun</span><h2>Unter den Sternen</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Es ist tief in der Nacht</span>, als ich aufwache.</p>
+
+<p>Ich weiß nicht genau, wie spät es ist. Irgendwann zwischen Mitternacht und dem frühen Morgen. Das Zimmer ist dunkel, im Flur ist niemand, und ich liege da und weiß plötzlich mit einer vollkommenen Klarheit, dass ich es hier keine Stunde länger aushalte.</p>
+
+<p>Ich ziehe leise meine Schuhe an und nehme meine Jacke. Handy in die Tasche.</p>
+
+<p>Ich weiß nicht, wohin ich will.</p>
+
+<p>Ich weiß nur, dass ich raus muss.</p>
+
+<p>Ich mache die Tür so leise zu, dass man nichts hört. Draußen ist die Luft kalt und riecht nach Regen, der noch nicht gefallen ist. Irgendwo bellt ein Hund, einmal, dann ist wieder Stille. Ich bleibe kurz stehen und atme ein, als müsste ich mich erst wieder daran erinnern, wie das geht.</p>
+
+<p>Dann gehe ich los.</p>
+
+<p>Einfach geradeaus.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Die Straßen sind fast leer.</p>
+
+<p>Manche Fenster sind noch hell. In einem sitzt jemand vor einem Fernseher, ich sehe nur das Flackern. Eine Ampel springt vor mir von Rot auf Grün, obwohl weit und breit kein Auto zu sehen ist, und ich warte trotzdem, und dann finde ich das so absurd, dass ich fast lachen muss.</p>
+
+<p>Mein Kopf ist müde. So müde, dass die Gedanken nicht mehr richtig aneinanderpassen.</p>
+
+<p>Irgendwann komme ich an den Fluss.</p>
+
+<p>Ich laufe auf die Brücke und bleibe auf der Hälfte stehen.</p>
+
+<p>Die Stadt sieht nachts völlig anders aus. Die Gebäude spiegeln sich im Wasser, überall sind Lichter, die die Strömung in lange, flackernde Linien zieht. Auf der anderen Seite stehen die Häuser wie eine leuchtende Wand am Ufer, und weiter hinten fährt ein Schiff ganz langsam flussabwärts.</p>
+
+<p>Vom Deck kommt leise Musik herüber. Ich erkenne die Melodie nicht.</p>
+
+<p>Es ist wunderschön.</p>
+
+<p>Fast lächerlich schön.</p>
+
+<p>Und ich fühle nichts.</p>
+
+<p>Keine Freude, kein Staunen, gar nichts. Und irgendwie macht genau das alles noch schlimmer. Dass die Welt so aussehen kann und trotzdem nichts mehr in mir ankommt.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich gehe näher ans Geländer.</p>
+
+<p>Meine Hände sind kalt. Ich lege sie auf das Metall und schaue hinunter.</p>
+
+<p>Das Wasser ist dunkel. Fast schwarz.</p>
+
+<p>Und ich denke darüber nach, wie einfach es wäre, einfach nicht mehr zurückzugehen.</p>
+
+<p>Kein Heim. Keine Gespräche. Kein Wecker. Kein Frühstück, zu dem ich mich zwingen muss.</p>
+
+<p>Kein leerer Platz in einem Klassenraum, auf dem längst jemand anderes sitzt.</p>
+
+<p>Keine Chats, die nie wieder beantwortet werden.</p>
+
+<p>Keine Wohnung, in die ich nicht zurückkann.</p>
+
+<p>Keine Erinnerungen, die mich jeden verdammten Tag einholen.</p>
+
+<p>Ich drücke die Hände fester aufs Geländer.</p>
+
+<p>Dann steige ich hoch.</p>
+
+<p>Mein Herz rast so sehr, dass ich es im Hals spüre. Der Wind ist hier oben stärker. Die Musik vom Schiff ist immer noch da, ganz leise.</p>
+
+<p>Ich schließe die Augen.</p>
+
+<p>Und für einen Moment mache ich gar nichts.</p>
+
+<p>Ich stehe einfach da.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Und dann kommt der Gedanke, mit dem ich nicht gerechnet habe.</p>
+
+<p>Er kommt nicht als Rettung. Er kommt nicht schön und nicht tröstlich.</p>
+
+<p>Er kommt als Bild.</p>
+
+<p>Ich sehe Jannik. Irgendwo, an irgendeinem Ort, an dem ich nie war, in genau diesem Moment, in dem er sich entschieden hat.</p>
+
+<p>Und ich denke:</p>
+
+<p><em>Er hat auch gedacht, dass es niemandem etwas ausmacht.</em></p>
+
+<p>Und dann denke ich an mich, wie ich auf dem Küchenboden saß und seine kalte Tasse in der Hand hatte.</p>
+
+<p>Und ich verstehe zum ersten Mal, ganz körperlich, was er mir angetan hat.</p>
+
+<p>Nicht was er sich angetan hat.</p>
+
+<p>Was er <em>mir</em> angetan hat.</p>
+
+<p>Und dass ich gerade dabei bin, genau dasselbe zu tun.</p>
+
+<p>Es gibt niemanden mehr, der auf dem Küchenboden sitzen würde. Das ist ja das Schlimme. Es gibt wirklich niemanden.</p>
+
+<p>Aber irgendjemand würde mich finden.</p>
+
+<p>Irgendein Mensch, der heute Morgen aufgestanden ist und zur Arbeit gegangen ist und keine Ahnung hat, was auf ihn zukommt.</p>
+
+<p>Und der es dann sein Leben lang mit sich herumträgt.</p>
+
+<p>So wie ich.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich mache die Augen wieder auf.</p>
+
+<p>Ich weiß nicht, ob das Mut ist oder Feigheit. Ich habe lange darüber nachgedacht und bin zu keinem Ergebnis gekommen.</p>
+
+<p>Vielleicht habe ich einfach nur Angst gehabt.</p>
+
+<p>Vielleicht gibt es einen winzigen Teil in mir, der nicht gehen will.</p>
+
+<p>Vielleicht war es auch nur, dass mir kalt war.</p>
+
+<p>Ich steige wieder herunter.</p>
+
+<p>Meine Beine fühlen sich an wie aus Papier. Ich lehne mich mit dem Rücken gegen das Geländer und rutsche daran hinunter, bis ich auf dem Boden sitze, und dann sitze ich da, mitten auf einer leeren Brücke, und zittere am ganzen Körper.</p>
+
+<p>Nicht vor Kälte.</p>
+
+<p>Dann stehe ich auf und gehe.</p>
+
+<p>Nicht zurück. Nicht zu einem bestimmten Ort.</p>
+
+<p>Einfach weg.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich laufe lange.</p>
+
+<p>Die Stadt wird stiller, je weiter ich mich vom Zentrum entferne. Irgendwann weiß ich nicht mehr, wo ich bin. Es ist mir egal. Meine Füße tun weh, und ich gehe weiter.</p>
+
+<p>Ich komme an Häusern vorbei, in denen alle Fenster dunkel sind. Einmal sehe ich auf der anderen Straßenseite einen Mann mit seinem Hund. Er schaut kurz herüber und geht weiter.</p>
+
+<p>Ich frage mich, wie oft Menschen aneinander vorbeilaufen, ohne zu wissen, was in dem anderen gerade passiert.</p>
+
+<p>Wahrscheinlich ständig.</p>
+
+<p>Wahrscheinlich jeden Tag.</p>
+
+<p>Dann sehe ich ein Tor.</p>
+
+<p>Ein Friedhof.</p>
+
+<p>Ich bleibe stehen und weiß für einen Moment nicht, wie ich hierhergekommen bin.</p>
+
+<p>Dann weiß ich es.</p>
+
+<p>Jannik.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich gehe hinein.</p>
+
+<p>Zwischen den Bäumen ist es dunkel, aber der Himmel ist vollkommen klar. So klar, dass man viel mehr Sterne sieht als sonst. Der Boden unter meinen Schuhen ist weich vom Laub, und irgendwo raschelt etwas im Gebüsch.</p>
+
+<p>Ich hole mein Handy raus und suche nach seinem Namen, nach dem Friedhof, nach irgendetwas, das mir hilft, sein Grab zu finden.</p>
+
+<p>Ich war noch nie hier.</p>
+
+<p>Sie haben mich zur Beerdigung nicht mitgenommen. Ich war zu dem Zeitpunkt im Krankenhaus, und danach hat es niemand mehr angesprochen, und ich habe nicht gefragt.</p>
+
+<p>Ich weiß nur, dass er irgendwo hier liegt. Das hat man mir gesagt.</p>
+
+<p>Ich laufe zwischen den Reihen entlang und lese Namen.</p>
+
+<p>Nicht er.</p>
+
+<p>Nicht er.</p>
+
+<p>Nicht er.</p>
+
+<p>Und dann steht er da.</p>
+
+<p>Ich bleibe stehen, und mein ganzer Körper wird schwer.</p>
+
+<p>Da ist er.</p>
+
+<p>Nicht er selbst. Nur sein Name. Ein Stein. Eine Fläche Erde. Ein Ort.</p>
+
+<p>Die Erde ist noch dunkel und uneben. Das Grab ist neu.</p>
+
+<p>Ich gehe langsam näher und setze mich daneben ins Gras.</p>
+
+<p>Ich weiß nicht, was ich sagen soll.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>„Warum?“</p>
+
+<p>Meine Stimme ist kaum zu hören.</p>
+
+<p>Ich warte. Natürlich kommt keine Antwort.</p>
+
+<p>„Warum bist du gegangen?“</p>
+
+<p>Ich wische mir über die Augen.</p>
+
+<p>„Warum hast du nicht mit mir geredet?“</p>
+
+<p>Und dann bricht es aus mir raus, und ich schreie einen Grabstein an, mitten in der Nacht.</p>
+
+<p>„Du hast mich gefragt, ob du mich was fragen darfst!“</p>
+
+<p>Meine Stimme kippt.</p>
+
+<p>„Du hast <em>gefragt</em>, Jannik! Und ich hab klar gesagt! Ich hab klar gesagt und du hast einfach aufgehört!“</p>
+
+<p>Ich schlage mit der flachen Hand auf die Erde neben mir.</p>
+
+<p>„Warum hast du nicht noch mal angefangen? Ein einziges Mal noch!“</p>
+
+<p>Ich atme zittrig ein.</p>
+
+<p>„Ich war doch da.“</p>
+
+<p>Meine Stimme bricht ganz.</p>
+
+<p>„Ich war die ganze Zeit da. Ich hab jeden Abend neben dir gelegen.“</p>
+
+<p>Ich schaue auf den Namen.</p>
+
+<p>„Du hättest mir sagen können, dass es dir schlecht geht. Du hast mir doch beigebracht, wie man das sagt. Du hast bei mir monatelang danebengesessen und nichts gesagt und mich einfach machen lassen, und ich hätte das für dich auch gemacht.“</p>
+
+<p>Die Worte kommen immer schneller.</p>
+
+<p>„Ich hätte alles gemacht.“</p>
+
+<p>Ich kann kaum noch sprechen.</p>
+
+<p>„Warum hast du mich nicht gelassen?“</p>
+
+<p>Ich lege die Stirn auf meine Knie.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich weine lange.</p>
+
+<p>Und irgendwann wird aus der Wut nur noch Traurigkeit. So eine tiefe, weite Traurigkeit, dass ich nicht mehr sagen kann, wo sie anfängt und wo ich aufhöre.</p>
+
+<p>„Ich vermisse dich.“</p>
+
+<p>Diesmal ist meine Stimme ganz leise.</p>
+
+<p>„So sehr.“</p>
+
+<p>Ich streiche mit den Fingern über die Erde.</p>
+
+<p>„Ich will einfach nur nach Hause.“</p>
+
+<p>Ich schlucke.</p>
+
+<p>„Aber du warst mein Zuhause.“</p>
+
+<p>Ich schließe die Augen.</p>
+
+<p>„Wie soll ich das ohne dich machen?“</p>
+
+<p>Der Satz klingt in dieser Stille fast fremd.</p>
+
+<p>„Wieso soll ich das überhaupt machen?“</p>
+
+<p>Ich frage es nicht mehr wütend.</p>
+
+<p>Nur noch erschöpft.</p>
+
+<p>„Wofür?“</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich schaue nach oben.</p>
+
+<p>Der Himmel ist klar. Unfassbar klar. Zwischen den Ästen sehe ich die Sterne, so viele, wie ich sie noch nie gesehen habe.</p>
+
+<p>Und dann sage ich etwas, das ich vorher nicht geplant habe.</p>
+
+<p>„Ich bin trotzdem noch da.“</p>
+
+<p>Es klingt nicht stark. Es klingt eher trotzig, wie etwas, das ein Kind sagt.</p>
+
+<p>„Ich bin sauer auf dich. Ich bin so wahnsinnig sauer auf dich.“</p>
+
+<p>Ich atme aus.</p>
+
+<p>„Und ich liebe dich. Beides gleichzeitig. Ich weiß auch nicht, wie das geht.“</p>
+
+<p>Ich lege mich neben sein Grab.</p>
+
+<p>Nicht auf die Erde. Auf das kalte Gras daneben.</p>
+
+<p>Ich ziehe die Jacke enger um mich.</p>
+
+<p>Über mir der Himmel. Neben mir sein Name.</p>
+
+<p>Und zum ersten Mal seit Wochen habe ich nicht das Gefühl, irgendwohin zu müssen.</p>
+
+<p>Ich muss nirgendwo hin. Ich muss niemandem antworten. Ich muss nichts erklären. Ich muss nichts essen. Ich muss nicht so tun, als wäre ich okay.</p>
+
+<p>Ich liege einfach da und schaue in die Sterne, und meine Augen werden immer schwerer.</p>
+
+<p>Ich denke noch einmal an unsere Küche.</p>
+
+<p>An seinen Arm um mich.</p>
+
+<p>An all die Abende, an denen ich geglaubt habe, dass ich sicher bin.</p>
+
+<p>Dann an Nika. An die Schule. An den leeren Platz. An das Heim. An das Krankenhaus.</p>
+
+<p>An alles, was in so kurzer Zeit aus meinem Leben verschwunden ist.</p>
+
+<p>Irgendwann kann ich die Gedanken nicht mehr auseinanderhalten.</p>
+
+<p>Der Wind bewegt die Blätter über mir. Ich höre nichts außer diesem Rascheln und meinem eigenen Atem.</p>
+
+<p>Ich schließe die Augen.</p>
+
+<p>Und schlafe ein.</p>
+
+<p>Neben dem Grab des Menschen, den ich am meisten geliebt habe.</p>
+
+<p>Unter einem vollkommen klaren Himmel.</p>
+
+<p>Als hätte die Nacht für einen Moment beschlossen, einfach still zu sein.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== X ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Zehn</span><h2>Ein neuer Anfang</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Als ich aufwache</span>, weiß ich für ein paar Sekunden nicht, wo ich bin.</p>
+
+<p>Der Himmel ist nicht mehr dunkel, sondern hellgrau. Durch die Äste über mir fällt kaltes Morgenlicht. Mein Nacken tut weh, meine Kleidung ist feucht vom Tau, und mein ganzer Körper fühlt sich an, als hätte ich überhaupt nicht geschlafen. Irgendwo in der Ferne fährt schon der erste Bus.</p>
+
+<p>Dann drehe ich den Kopf.</p>
+
+<p>Der Grabstein.</p>
+
+<p>Jannik.</p>
+
+<p>Sofort ist alles wieder da. Die Brücke. Das Heim. Die Nacht.</p>
+
+<p>Und dann kommt die Angst.</p>
+
+<p>Nicht vor dem Friedhof. Vor dem Gedanken, dass ich hier nicht bleiben kann.</p>
+
+<p>Ich setze mich auf. Es ist still, viel zu still, irgendwo weiter hinten singt ein Vogel.</p>
+
+<p>Für einen Moment will ich mich einfach wieder hinlegen. Hier neben ihm. Hier fragt mich niemand etwas. Hier muss ich niemandem erklären, warum ich weggelaufen bin. Hier muss ich nicht so tun, als wäre ich in Ordnung.</p>
+
+<p>Aber ich weiß, dass das nicht geht.</p>
+
+<p>Ich bin seit Stunden weg. Das Heim wird es längst gemerkt haben. Vielleicht ist die Polizei unterwegs. Vielleicht suchen sie schon genau hier.</p>
+
+<p>Ich stehe langsam auf und streiche meine Hose ab.</p>
+
+<p>Dann schaue ich noch einmal auf sein Grab.</p>
+
+<p>„Ich muss gehen.“</p>
+
+<p>Meine Stimme klingt leise und fremd. Ich weiß selbst nicht, ob ich das zu ihm sage oder zu mir.</p>
+
+<p>„Es tut mir leid.“</p>
+
+<p>Ich schlucke.</p>
+
+<p>„Ich komm wieder.“</p>
+
+<p>Ich weiß nicht, ob das stimmt. Ich sage es trotzdem.</p>
+
+<p>„Ich liebe dich.“</p>
+
+<p>Dann drehe ich mich um und gehe.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich laufe einfach los.</p>
+
+<p>Kein Ziel. Keine Ahnung, wohin. Nur weg.</p>
+
+<p>Meine Beine tun immer noch weh, aber ich merke es kaum, mein Kopf ist zu voll. Ich schaue mich ständig um, obwohl niemand hinter mir ist.</p>
+
+<p>Jedes Auto, das langsamer wird, macht mir Angst.</p>
+
+<p>Ich überquere eine Straße, biege irgendwo ab und gehe weiter.</p>
+
+<p>Dann höre ich meinen Namen.</p>
+
+<p>„Luna!“</p>
+
+<p>Ich bleibe stehen. Mein Herz rast.</p>
+
+<p>Ich drehe mich langsam um.</p>
+
+<p>Ein Streifenwagen steht ein Stück entfernt. Ein Beamter steigt aus.</p>
+
+<p>Und ich renne.</p>
+
+<p>Ich weiß nicht mal, warum. Ich renne einfach. Meine Füße tragen mich so schnell, wie sie können, obwohl jeder Schritt wehtut. Jemand ruft hinter mir, aber ich drehe mich nicht um.</p>
+
+<p>Dann komme ich an eine Ecke und bleibe stehen.</p>
+
+<p>Vor mir eine Straße. Hinter mir Schritte.</p>
+
+<p>Ich weiß nicht mehr, wohin.</p>
+
+<p>„Luna, bleib bitte stehen!“</p>
+
+<p>Ich schließe die Augen.</p>
+
+<p>Ich kann nicht mehr. Nicht körperlich. Nicht im Kopf.</p>
+
+<p>Ich lasse die Schultern fallen und sacke einfach auf den Boden.</p>
+
+<p>Ein Polizist kommt langsam näher und bleibt ein paar Meter vor mir stehen.</p>
+
+<p>„Wir wollen dir nichts tun.“</p>
+
+<p>Ich antworte nicht.</p>
+
+<p>„Du bist seit heute Nacht weg. Wir haben dich gesucht.“</p>
+
+<p>Ich schaue auf den Boden.</p>
+
+<p>„Ich wollte nur weg.“</p>
+
+<p>Meine Stimme ist kaum zu hören.</p>
+
+<p>„Ich weiß.“</p>
+
+<p>Er geht in die Hocke, damit er nicht über mir steht. Ich weiß nicht, ob sie das lernen oder ob er einfach ein anständiger Mensch ist.</p>
+
+<p>„Kommst du mit uns?“</p>
+
+<p>Ich will nein sagen.</p>
+
+<p>Aber ich habe keine Kraft mehr wegzulaufen.</p>
+
+<p>Also nicke ich.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Die Fahrt ist still.</p>
+
+<p>Ich sitze hinten und schaue aus dem Fenster. Ich erkenne die Straßen wieder, und gleichzeitig ist alles fremd.</p>
+
+<p>Irgendwann sagt mir jemand, dass ich nicht in das alte Heim zurückkomme.</p>
+
+<p>Ich schaue auf.</p>
+
+<p>„Warum?“</p>
+
+<p>„Weil wir glauben, dass eine andere Unterbringung für dich besser passt.“</p>
+
+<p>Ich sage nichts.</p>
+
+<p>Ich habe keine Ahnung, was das heißt. Eine andere Einrichtung. Wieder ein anderes Zimmer. Wieder andere Menschen. Wieder Regeln. Wieder jemand, der morgens an meine Tür klopft.</p>
+
+<p>Ich will nicht schon wieder irgendwohin.</p>
+
+<p>Aber ich bin zu müde, um zu diskutieren.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Das Auto hält vor einem Gebäude, das nicht aussieht wie das Heim.</p>
+
+<p>Es ist kleiner. Ruhiger. Weniger wie eine Einrichtung und mehr wie ein normales Wohnhaus mit zu vielen Fahrrädern davor. An der Fassade rankt Efeu, und im Vorgarten steht ein windschiefer Basketballkorb.</p>
+
+<p>Wir gehen hinein. Jemand stellt sich mir vor. Ich merke mir den Namen nicht.</p>
+
+<p>Man zeigt mir ein Zimmer.</p>
+
+<p>Ein Bett. Ein Schreibtisch. Ein Schrank. Ein Fenster.</p>
+
+<p>Nichts Besonderes.</p>
+
+<p>Aber es fühlt sich anders an.</p>
+
+<p>Vielleicht, weil niemand von mir verlangt, dass ich mich sofort irgendwo dazusetze.</p>
+
+<p>Vielleicht, weil niemand sagt, dass ich jetzt mit den anderen essen muss.</p>
+
+<p>Vielleicht, weil die Tür zu meinem Zimmer einfach zugemacht werden kann.</p>
+
+<p>Ich setze mich auf das Bett.</p>
+
+<p>Die Frau bleibt an der Tür stehen, ohne reinzukommen.</p>
+
+<p>„Du kannst erst mal ankommen.“</p>
+
+<p>Ich schaue sie an.</p>
+
+<p>„Was heißt das?“</p>
+
+<p>„Dass du nicht sofort irgendwas schaffen musst.“</p>
+
+<p>Ich sage nichts.</p>
+
+<p>Sie erklärt mir, dass ich hier Unterstützung bekomme, aber auch selbst entscheiden darf. Dass jemand da ist, wenn ich jemanden brauche. Dass ich meinen Alltag nach und nach selbst aufbauen soll.</p>
+
+<p>Und dass ich eine Therapeutin bekomme, einmal die Woche, und dass ich da hingehen muss, auch wenn ich nicht will.</p>
+
+<p>„Und wenn ich nicht rede?“</p>
+
+<p>„Dann redest du nicht. Hingehen musst du trotzdem.“</p>
+
+<p>Ich nicke.</p>
+
+<p>Zum ersten Mal seit langer Zeit fühlt sich eine fremde Erklärung nicht sofort wie eine weitere Vorschrift an.</p>
+
+<p>Ich sitze einfach da.</p>
+
+<p>Und darf sitzen.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich will hier nicht so tun, als wäre danach alles gut gewesen.</p>
+
+<p>Es war nicht gut.</p>
+
+<p>Die ersten Wochen sind hart. Ich schlafe schlecht. Es gibt Tage, an denen ich kaum aus dem Bett komme, und Tage, an denen ich eine Stunde vor meinem Kaffee sitze, bevor ich den ersten Schluck trinke.</p>
+
+<p>Es gibt Tage, an denen ich nichts will.</p>
+
+<p>Es gibt Tage, an denen ich wütend bin. Auf Jannik. Auf Nika. Auf mich. Auf alle. Auf alles.</p>
+
+<p>Es gibt Tage, an denen ich einfach nur traurig bin, ohne genau zu wissen, warum.</p>
+
+<p>Und es gibt die anderen Tage, über die niemand redet: die, an denen einfach gar nichts ist. Kein Schmerz, keine Trauer, nichts. Nur eine Art Grundrauschen.</p>
+
+<p>Bei der Therapeutin sage ich in den ersten drei Sitzungen fast nichts. Ich sitze da und schaue aus dem Fenster, und sie lässt mich.</p>
+
+<p>In der vierten sage ich einen einzigen Satz.</p>
+
+<p>„Ich hätte es sehen müssen.“</p>
+
+<p>Und sie sagt nicht „Das stimmt nicht“ und sie sagt nicht „Du kannst nichts dafür“, weil sie offenbar weiß, dass ich das sofort wieder rausgeworfen hätte.</p>
+
+<p>Sie sagt: „Erzähl mir, was du gesehen hast.“</p>
+
+<p>Und dann rede ich zweiundfünfzig Minuten am Stück.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Wir haben lange darüber gesprochen, ob ich schuld bin.</p>
+
+<p>Ich sage bis heute nicht, dass ich es nicht bin. Ich glaube, das wäre gelogen, und ich habe genug von Sätzen, die gut klingen.</p>
+
+<p>Was ich sagen kann, ist das:</p>
+
+<p>Ich war sechzehn. Ich hatte gerade meine beste Freundin verloren. Ich habe einen Menschen gesehen, der müde war, und ich habe geglaubt, dass Menschen, die einen halten, selbst nicht fallen.</p>
+
+<p>Das war der Fehler.</p>
+
+<p>Nicht Bosheit. Nicht Gleichgültigkeit. Ein Denkfehler, den fast alle machen.</p>
+
+<p>Und der Unterschied zwischen „Ich hätte es sehen müssen“ und „Ich habe es nicht gesehen“ ist ungefähr so groß wie zwischen Ertrinken und Schwimmen.</p>
+
+<p>Ich brauche immer noch lange, bis ich vom einen zum anderen komme.</p>
+
+<p>Aber ich komme inzwischen an.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Etwas ist anders hier.</p>
+
+<p>Nicht viel. Nur ein kleines bisschen.</p>
+
+<p>Ich darf meine Tür zumachen. Ich entscheide selbst, wann ich aufstehe. Ich kann mir mein Essen selbst machen. Ich kann rausgehen. Ich kann allein sein.</p>
+
+<p>Und wenn ich jemanden brauche, ist jemand da.</p>
+
+<p>Niemand behauptet, dass ich plötzlich gesund bin.</p>
+
+<p>Niemand erwartet, dass ich in drei Wochen wieder die alte Luna bin.</p>
+
+<p>Ich glaube, genau das macht den Unterschied.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>An einem Nachmittag im Mai sitze ich an meinem Schreibtisch und schaue meinen Computer an.</p>
+
+<p>Sie haben ihn mir aus der Wohnung geholt, zusammen mit ein paar Kisten. Er stand seit Wochen da und ich habe ihn nicht angefasst.</p>
+
+<p>Heute mache ich ihn an.</p>
+
+<p>Der Bildschirm leuchtet auf. Mein altes Projekt ist noch da, genau so, wie ich es verlassen habe, mit dem halbfertigen Kram und dem Kommentar <code>// TODO fix this</code>, den ich vor einem halben Jahr geschrieben habe. Der Lüfter des Laptops brummt leise, ein Geräusch, das ich fast vergessen hatte.</p>
+
+<p>Ich öffne den Code.</p>
+
+<p>Ich lese die ersten Zeilen. Dann die nächsten.</p>
+
+<p>Und irgendwann merke ich, dass ich nicht mehr lese, sondern nachdenke. Dass ich überlege, wie ich diesen einen Fehler behebe.</p>
+
+<p><em>Was hab ich denn da für einen Müll geschrieben. Das ergibt ja gar keinen Sinn.</em></p>
+
+<p>Ich öffne eine neue Datei.</p>
+
+<p>Meine Finger liegen auf der Tastatur.</p>
+
+<p>Ich tippe eine Zeile. Dann noch eine.</p>
+
+<p>Es ist nichts Großes. Kein Durchbruch. Keine Heilung. Ich bin nicht plötzlich glücklich.</p>
+
+<p>Aber für ein paar Minuten denke ich nicht an Nika.</p>
+
+<p>Nicht an Jannik.</p>
+
+<p>Nicht an das Heim, nicht an das Krankenhaus, nicht an die Brücke.</p>
+
+<p>Nur an dieses eine kleine, vollkommen unwichtige Problem auf meinem Bildschirm.</p>
+
+<p>Und als ich mich zurücklehne, merke ich, dass ich lächle.</p>
+
+<p>Nur ganz kurz.</p>
+
+<p>Und diesmal höre ich nicht auf damit.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich weiß, dass morgen wieder ein schlechter Tag sein kann.</p>
+
+<p>Ich weiß, dass ich weiter trauern werde, wahrscheinlich für den Rest meines Lebens, und dass Trauer nicht aufhört, sondern nur die Form wechselt.</p>
+
+<p>Ich weiß, dass die Depression nicht einfach weg ist.</p>
+
+<p>Aber vielleicht muss sie das gerade auch nicht.</p>
+
+<p>Vielleicht reicht es erst mal, dass ich noch da bin.</p>
+
+<p>Vielleicht reicht es, dass ich heute eine einzige kleine Entscheidung selbst getroffen habe.</p>
+
+<p>Ich mache den Laptop nicht zu.</p>
+
+<p>Ich lasse ihn einfach an.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Zwei Wochen später fahre ich zum Friedhof.</p>
+
+<p>Diesmal am Tag. Diesmal mit dem Bus. Diesmal, weil ich es will.</p>
+
+<p>Ich habe Blumen dabei, was ich albern finde, weil er sich nie etwas aus Blumen gemacht hat, aber man macht das wohl so.</p>
+
+<p>Ich setze mich ins Gras, an dieselbe Stelle wie damals.</p>
+
+<p>„Hey.“</p>
+
+<p>Ich muss ein bisschen lachen, weil es sich komisch anfühlt, einen Stein zu grüßen.</p>
+
+<p>„Ich hab wieder angefangen zu programmieren. Ist immer noch Müll, aber es läuft.“</p>
+
+<p>Der Wind bewegt die Bäume.</p>
+
+<p>„Ich geh jetzt zu einer Therapeutin. Sie ist okay. Sie lässt mich in Ruhe, wenn ich nicht reden will.“</p>
+
+<p>Ich zupfe an einem Grashalm.</p>
+
+<p>„Ich bin immer noch sauer auf dich. Nur damit du's weißt.“</p>
+
+<p>Ich schaue auf seinen Namen.</p>
+
+<p>„Aber ich hab beschlossen, dass ich dir das nicht antue. Das mit der Brücke. Ich mach das nicht.“</p>
+
+<p>Ich schlucke.</p>
+
+<p>„Ich hab's mal fast gemacht. Und dann hab ich an dich gedacht und daran, wie es war, als sie mir das gesagt haben, und dann bin ich wieder runter.“</p>
+
+<p>Ich lege meine Hand flach auf das Gras.</p>
+
+<p>„Du hast mich damit gerettet, du Idiot. Das ist nicht fair.“</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich sitze noch eine Weile da.</p>
+
+<p>Dann stehe ich auf und wische mir das Gras von der Hose.</p>
+
+<p>„Ich komm wieder“, sage ich.</p>
+
+<p>Und diesmal stimmt es.</p>
+
+<p>Auf dem Rückweg laufe ich an dem Fluss vorbei, absichtlich, weil ich wissen will, ob ich das kann.</p>
+
+<p>Ich kann.</p>
+
+<p>Es ist ein normaler Nachmittag. Leute joggen. Jemand sitzt auf einer Bank und isst ein Brötchen. Auf dem Wasser fährt ein Schiff flussaufwärts, und irgendwo spielt jemand Musik, viel zu laut.</p>
+
+<p>Ich bleibe kurz stehen und schaue aufs Wasser.</p>
+
+<p>Dann gehe ich weiter.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich weiß nicht, wie diese Geschichte ausgeht.</p>
+
+<p>Ich stecke ja noch mittendrin. Ich bin siebzehn, ich wohne in einem Zimmer mit vier Möbelstücken, ich gehe wieder zur Schule, meistens, und ich habe zwei Chats auf meinem Handy, die ich nicht löschen werde.</p>
+
+<p>Manchmal, morgens, in dieser Sekunde zwischen Schlafen und Wachsein, habe ich vergessen, dass sie tot sind.</p>
+
+<p>Und dann fällt es mir wieder ein.</p>
+
+<p>Das hört wahrscheinlich nie ganz auf.</p>
+
+<p>Aber ich habe irgendwann gemerkt, dass zwischen dem Aufwachen und dem Wiedereinfallen inzwischen ein paar Sekunden mehr liegen als früher.</p>
+
+<p>Und das ist, glaube ich, wie es geht.</p>
+
+<p>Nicht plötzlich. Nicht perfekt. Nicht geheilt.</p>
+
+<p>Nur in Sekunden.</p>
+
+<p>Frau Yilmaz hatte recht. Es ist nicht besser geworden.</p>
+
+<p>Es hat sich verändert.</p>
+
+<p>Und ich bin noch da.</p>
+
+<p>Ich glaube, das reicht erst mal.</p>
+
+<p>Ich glaube, ich darf langsam wieder Luna werden.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== XI ==================== -->
+<div class="chapter-head"><span class="chnum">Kapitel Elf</span><h2>Ein Jahr</h2><div class="rule">❧</div></div>
+
+<p><span class="opening">Der Wecker klingelt</span>, und ich weiß es, bevor ich überhaupt auf das Datum schaue.</p>
+
+<p>Manche Tage kündigen sich einfach an. Nicht durch irgendein Zeichen von außen, sondern durch etwas in mir, das schon wach ist, bevor der Rest von mir das ist.</p>
+
+<p>Zwölf Monate.</p>
+
+<p>Ich liege eine Weile da und schaue an die Decke, bevor ich mein Handy überhaupt anfasse. Ich weiß genau, welches Datum dort steht. Ich habe es seit Wochen im Kopf gehabt, so wie man ein Gewitter kommen sieht, lange bevor der erste Tropfen fällt.</p>
+
+<p>Der Unterschied zum letzten Jahr ist: Ich habe mich vorbereitet.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Ich habe das mit meiner Therapeutin besprochen, drei Wochen vorher schon. Sie hat gefragt, was ich brauche, an diesem Tag, und ich hatte zum ersten Mal wirklich eine Antwort darauf, keine Ahnung, woher die plötzlich kam.</p>
+
+<p>„Ich will nicht allein sein. Aber ich will auch nicht, dass jemand mich die ganze Zeit anschaut, ob's mir gut geht.“</p>
+
+<p>Sie hat genickt, als wäre das eine vollkommen normale Sache zu sagen, und wir haben einen Plan gemacht. Ein blödes Wort dafür, ein Plan, für einen Tag, an dem man einfach nur einen Menschen verliert. Aber es hat geholfen, es so zu nennen.</p>
+
+<p>Ich habe Frau Brandt Bescheid gegeben, aus der ersten Einrichtung, mit der ich noch manchmal schreibe. Ich habe meiner Mitbewohnerin hier, Meret, gesagt, dass heute ein schwerer Tag ist, ohne alles erklären zu müssen. Sie hat nur genickt und gesagt: „Ich bin da, wenn du klopfst. Sonst nicht.“ Genau richtig.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Trotzdem ist der Tag furchtbar.</p>
+
+<p>Das muss ich dazusagen, weil ich sonst den Eindruck erwecke, als hätte ein guter Plan die Trauer irgendwie kleiner gemacht. Das stimmt nicht.</p>
+
+<p>Am Nachmittag stehe ich in der Küche und will mir einen Kaffee machen, und meine Hände fangen plötzlich an zu zittern, aus dem Nichts, während das Wasser durch die Maschine läuft, genau wie an jedem Morgen bei ihm. Der Geruch ist derselbe. Für eine halbe Sekunde stehe ich nicht mehr in dieser Küche, sondern in unserer alten, und er steht am Herd, und dann ist es wieder weg, und ich stehe hier, mit einer Tasse in der zitternden Hand.</p>
+
+<p>Ich setze mich auf den Boden. Nicht dramatisch. Einfach, weil meine Beine gerade nicht wissen, wie man steht.</p>
+
+<p>Und dann mache ich etwas, das ich vor einem Jahr nicht gekonnt hätte.</p>
+
+<p>Ich zähle.</p>
+
+<p>Fünf Dinge, die ich sehen kann. Der Wasserkocher. Ein Fleck an der Wand. Merets Post-it am Kühlschrank. Das Fenster. Meine eigenen Knie.</p>
+
+<p>Vier Dinge, die ich hören kann. Die Kaffeemaschine. Ein Auto draußen. Die Uhr. Meinen eigenen Atem, der langsam wieder ruhiger wird.</p>
+
+<p>Ich weiß nicht, wer diese Übung erfunden hat. Ich weiß nur, dass sie die Trauer nicht wegmacht. Sie gibt mir nur einen Griff, an dem ich mich festhalten kann, bis die Welle durch ist.</p>
+
+<p>Nach ein paar Minuten stehe ich wieder auf. Der Kaffee ist kalt geworden. Ich mache mir einen neuen.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Am Nachmittag fahre ich zum Friedhof. Diesmal nicht heimlich, nicht nachts, nicht mit dem Gedanken, nicht mehr zurückzukommen.</p>
+
+<p>Ich habe Blumen dabei und diesmal auch etwas anderes: eine kleine Packung Gummibärchen, weil er die immer heimlich aus meinem Vorrat geklaut und es nie zugegeben hat, und ich finde, das darf er auch als Toter noch abbekommen.</p>
+
+<p>Ich setze mich ins Gras.</p>
+
+<p>„Ein Jahr“, sage ich.</p>
+
+<p>Der Wind bewegt die Blätter über mir, genau wie beim letzten Mal, und ich erzähle ihm ein bisschen was. Dass ich die Schule fast geschafft habe. Dass ich mit einer Mitbewohnerin wohne, die schrecklich viel Kaffee trinkt, so wie er. Dass ich immer noch manchmal wütend bin, aber inzwischen öfter einfach nur traurig, was, glaube ich, ein Fortschritt ist, auch wenn es sich nicht danach anfühlt.</p>
+
+<p>Ich sage ihm nicht, dass es besser wird.</p>
+
+<p>Ich sage: „Es tut immer noch weh. Aber ich werd inzwischen nicht mehr umgehauen davon. Meistens.“</p>
+
+<p>Das ist ehrlicher als alles, was ich ihm letztes Jahr sagen konnte.</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Abends, zurück in meinem Zimmer, klopft Meret an meine Tür.</p>
+
+<p>„Alles okay?“</p>
+
+<p>„Nicht wirklich. Aber ich hab's überstanden.“</p>
+
+<p>Sie setzt sich zu mir aufs Bett, ohne dass ich sie darum bitte, und sagt eine Weile gar nichts. Irgendwann fragt sie, ob ich reden will, und ich erzähle ihr zum ersten Mal die ganze Geschichte, nicht die Kurzversion, die ich sonst benutze, wenn jemand fragt, was mit meinen Eltern ist.</p>
+
+<p>Sie hört einfach zu. Sie sagt nicht, dass es ihr leidtut. Sie sagt am Ende nur: „Krass, dass du das ausgehalten hast.“</p>
+
+<p>„Hab ich ja auch nicht wirklich ausgehalten. Ich war mal kurz davor, es nicht mehr auszuhalten.“</p>
+
+<p>„Und jetzt?“</p>
+
+<p>Ich denke kurz nach.</p>
+
+<p>„Jetzt halt ich's aus. Anders als vorher. Aber ich hab's noch nicht geschafft.“</p>
+
+<p>„Ist das nicht dasselbe?“</p>
+
+<p>„Nee“, sage ich. „Geschafft klingt, als wär's vorbei. Ausgehalten heißt nur, dass ich heute noch da bin.“</p>
+
+<div class="scenebreak">❧</div>
+
+<p>Später in dieser Nacht liege ich wach und denke darüber nach, was sich eigentlich verändert hat, in diesem einen Jahr.</p>
+
+<p>Nika ist immer noch tot. Jannik ist immer noch tot. Meine Mutter ist immer noch niemand, den ich anrufe, wenn es mir schlecht geht. Nichts von dem, was mir wehgetan hat, ist verschwunden.</p>
+
+<p>Aber ich weiß jetzt, was ich tun muss, wenn die Wellen kommen. Ich weiß, wen ich anrufen kann und wen nicht. Ich weiß, dass ein schlechter Tag nicht bedeutet, dass wieder alles zusammenbricht. Ich weiß, dass ich am nächsten Morgen trotzdem wieder aufstehen werde, auch wenn ich in diesem Moment noch nicht weiß, wie.</p>
+
+<p>Frau Yilmaz hatte recht, damals im Krankenhaus. Es ist nicht besser geworden. Nicht in dem Sinn, dass der Schmerz kleiner geworden wäre.</p>
+
+<p>Es hat sich nur verändert, wie ich ihn trage.</p>
+
+<p>Vor einem Jahr hat er mich getragen.</p>
+
+<p>Heute trage ich ihn.</p>
+
+<p>Das ist nicht dasselbe wie geheilt.</p>
+
+<p>Aber es reicht, um morgen wieder aufzustehen.</p>
+
+<p>Und übermorgen auch.</p>
+
+<p class="brk">&nbsp;</p>
+
+<!-- ==================== NACHWORT ==================== -->
+<div class="after"><h2>Nachwort</h2></div>
+<p class="after-p">Luna ist eine erfundene Figur, aber das, was ihr passiert, ist es nicht. Menschen verlieren Menschen. Menschen übersehen Zeichen. Menschen glauben, dass sie niemandem zur Last fallen dürfen, und schweigen deshalb genau dann, wenn Reden alles verändern würde. Vielleicht erkennst du dich in einer Zeile wieder, die wehtut. Das ist in Ordnung. Das war der Sinn.</p>
+<p class="after-p">Wenn du das hier liest und dich in Jannik wiedererkennst: Du bist niemandem zu viel. Der Gedanke, dass die anderen ohne dich besser klarkämen, ist ein Symptom, keine Wahrheit. Er lügt. Er lügt so überzeugend, dass man ihm glaubt, und trotzdem lügt er. Bitte glaub ihm nicht.</p>
+<p class="after-p">Wenn du dich in Luna wiedererkennst: Du bist nicht schuld daran, dass du etwas nicht gesehen hast. Menschen, die gehen wollen, sind oft sehr gut darin, es zu verbergen. Dass du jemanden nicht retten konntest, heißt nicht, dass du nicht geliebt hast. Es heißt nur, dass du ein Mensch warst, kein Wächter.</p>
+<p class="after-p">Und wenn du dir gerade um jemanden Sorgen machst: Frag. Frag direkt. Frag ein zweites Mal, wenn du ein „Ist nichts“ bekommst. Man kann niemanden auf eine Idee bringen, die er nicht schon hat. Aber man kann jemandem zeigen, dass da noch ein Mensch ist, der zuhört, und manchmal ist genau das der Unterschied.</p>
+<p class="after-p after-contact">
+<strong>Telefonseelsorge</strong> · kostenlos, anonym, rund um die Uhr<br>0800&nbsp;111&nbsp;0&nbsp;111 &nbsp;·&nbsp; 0800&nbsp;111&nbsp;0&nbsp;222<br><br><strong>Nummer gegen Kummer</strong> (für Kinder und Jugendliche)<br>116&nbsp;111 &nbsp;·&nbsp; Mo–Sa 14–20 Uhr<br><br><strong>In akuter Gefahr: 112</strong>
+</p>
+</div>
+
+<script>
+(function () {
+  const source = document.getElementById("source");
+  const book = document.getElementById("book");
+  const pageNumEl = document.getElementById("pageNum");
+  const chapterSelect = document.getElementById("chapterSelect");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  let pages = [];        // Array<Array<Node>>
+  let currentIndex = 0;  // Index der linken (bzw. einzigen) sichtbaren Seite
+  let isSpread = false;  // zwei Seiten nebeneinander wie ein aufgeschlagenes Buch
+
+  function isBrk(node) {
+    return node.nodeType === 1 && node.tagName === "P" && node.classList.contains("brk");
+  }
+
+  function computeIsSpread() {
+    return window.innerWidth >= 1000;
+  }
+
+  function buildLeaves() {
+    book.querySelectorAll(".page").forEach((el) => el.remove());
+    book.classList.toggle("spread", isSpread);
+    const count = isSpread ? 2 : 1;
+    for (let i = 0; i < count; i++) {
+      const leaf = document.createElement("div");
+      leaf.className = "page";
+      const content = document.createElement("div");
+      content.className = "page-content";
+      const footer = document.createElement("div");
+      footer.className = "page-footer";
+      leaf.appendChild(content);
+      leaf.appendChild(footer);
+      book.appendChild(leaf);
+    }
+  }
+
+  function paginate() {
+    // Maße von einem bereits vorhandenen echten Blatt ablesen (kein Extra-Flex-Item nötig).
+    const realLeaf = book.querySelector(".page");
+    const realContent = realLeaf.querySelector(".page-content");
+    const cs = getComputedStyle(realContent);
+    const contentWidth = parseFloat(cs.width);
+    const available = (realContent.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)) * 0.985;
+
+    // position:absolute nimmt das Element aus dem Flex-Layout von #book heraus,
+    // ohne dass es (wie bei position:static) mit den echten Blättern um Breite konkurriert.
+    const measure = document.createElement("div");
+    measure.className = "page-content";
+    measure.style.position = "absolute";
+    measure.style.top = "0";
+    measure.style.left = "0";
+    measure.style.right = "auto";
+    measure.style.bottom = "auto";
+    measure.style.visibility = "hidden";
+    measure.style.height = "auto";
+    measure.style.width = contentWidth + "px";
+    book.appendChild(measure);
+
+    const nodes = Array.from(source.children);
+    const result = [];
+    let current = [];
+    measure.innerHTML = "";
+
+    for (const node of nodes) {
+      if (isBrk(node)) {
+        if (current.length) { result.push(current); current = []; measure.innerHTML = ""; }
+        continue;
+      }
+      const clone = node.cloneNode(true);
+      measure.appendChild(clone);
+      if (measure.scrollHeight > available && current.length > 0) {
+        measure.removeChild(clone);
+        result.push(current);
+        current = [];
+        measure.innerHTML = "";
+        measure.appendChild(clone);
+        current.push(node);
+      } else {
+        current.push(node);
+      }
+    }
+    if (current.length) result.push(current);
+    book.removeChild(measure);
+    return result;
+  }
+
+  function fillLeaf(leaf, pageIndex) {
+    const content = leaf.querySelector(".page-content");
+    const footer = leaf.querySelector(".page-footer");
+    content.innerHTML = "";
+    const pageNodes = pages[pageIndex];
+    if (pageNodes) {
+      pageNodes.forEach((n) => content.appendChild(n.cloneNode(true)));
+      footer.textContent = String(pageIndex + 1);
+    } else {
+      footer.textContent = "";
+    }
+  }
+
+  function goTo(target, fade) {
+    target = Math.max(0, Math.min(pages.length - 1, target));
+    if (isSpread) target -= target % 2;
+    const leaves = book.querySelectorAll(".page");
+    const apply = () => {
+      leaves.forEach((leaf, i) => fillLeaf(leaf, target + i));
+      leaves.forEach((leaf) => leaf.querySelector(".page-content").classList.remove("fading"));
+    };
+    if (fade) {
+      leaves.forEach((leaf) => leaf.querySelector(".page-content").classList.add("fading"));
+      setTimeout(apply, 160);
+    } else {
+      apply();
+    }
+    currentIndex = target;
+    updateUi();
+  }
+
+  function step() { return isSpread ? 2 : 1; }
+  function next() { if (!nextBtn.disabled) goTo(currentIndex + step(), true); }
+  function prev() { if (!prevBtn.disabled) goTo(currentIndex - step(), true); }
+
+  function updateUi() {
+    const lastShown = Math.min(currentIndex + step() - 1, pages.length - 1);
+    pageNumEl.textContent = (currentIndex + 1 === lastShown + 1
+      ? (currentIndex + 1)
+      : (currentIndex + 1) + "–" + (lastShown + 1)) + " / " + pages.length;
+    prevBtn.disabled = currentIndex <= 0;
+    nextBtn.disabled = currentIndex + step() > pages.length - 1;
+    chapterSelect.value = String(findChapterPage(currentIndex));
+  }
+
+  function findChapterPage(fromIndex) {
+    let best = 0;
+    for (const opt of chapterSelect.options) {
+      const idx = parseInt(opt.value, 10);
+      if (idx <= fromIndex) best = idx; else break;
+    }
+    return best;
+  }
+
+  function buildChapterMenu() {
+    chapterSelect.innerHTML = "";
+    pages.forEach((pageNodes, i) => {
+      const head = pageNodes.find((n) => n.nodeType === 1 && (
+        n.classList.contains("titlepage") || n.classList.contains("dedication") ||
+        n.classList.contains("notice") || n.classList.contains("toc") ||
+        n.classList.contains("chapter-head") || n.classList.contains("after")
+      ));
+      if (!head) return;
+      let label;
+      if (head.classList.contains("titlepage")) label = "Titelseite";
+      else if (head.classList.contains("dedication")) label = "Widmung";
+      else if (head.classList.contains("notice")) label = "Hinweis";
+      else if (head.classList.contains("toc")) label = "Inhalt";
+      else if (head.classList.contains("after")) label = "Nachwort";
+      else {
+        const h2 = head.querySelector("h2");
+        const num = head.querySelector(".chnum");
+        label = (num ? num.textContent + " – " : "") + (h2 ? h2.textContent : "Kapitel");
+      }
+      const opt = document.createElement("option");
+      opt.value = String(i);
+      opt.textContent = label;
+      chapterSelect.appendChild(opt);
+    });
+  }
+
+  chapterSelect.addEventListener("change", () => goTo(parseInt(chapterSelect.value, 10), true));
+  prevBtn.addEventListener("click", prev);
+  nextBtn.addEventListener("click", next);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.key === "PageDown") next();
+    if (e.key === "ArrowLeft" || e.key === "PageUp") prev();
+  });
+
+  let touchStartX = null;
+  book.addEventListener("touchstart", (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  book.addEventListener("touchend", (e) => {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); }
+    touchStartX = null;
+  }, { passive: true });
+
+  function attachTurnZones() {
+    const left = document.createElement("div");
+    left.className = "turn-zone left";
+    left.addEventListener("click", prev);
+    const right = document.createElement("div");
+    right.className = "turn-zone right";
+    right.addEventListener("click", next);
+    book.appendChild(left);
+    book.appendChild(right);
+  }
+
+  function init() {
+    isSpread = computeIsSpread();
+    buildLeaves();
+    pages = paginate();
+    goTo(0, false);
+    buildChapterMenu();
+    attachTurnZones();
+    updateUi();
+  }
+
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const keepIndex = currentIndex;
+      const wasSpread = isSpread;
+      isSpread = computeIsSpread();
+      if (isSpread !== wasSpread) buildLeaves();
+      pages = paginate();
+      goTo(Math.min(keepIndex, pages.length - 1), false);
+      buildChapterMenu();
+      updateUi();
+    }, 200);
+  });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</body>
+</html>
